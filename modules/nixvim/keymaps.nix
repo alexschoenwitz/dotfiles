@@ -1,0 +1,213 @@
+[
+  # Top Pickers & Explorer
+  {
+    key = "<leader>e";
+    action = "<cmd>lua Snacks.explorer()<cr>";
+    options.desc = "Open file browser";
+  }
+  {
+    key = "<leader> ";
+    action = "<cmd>lua Snacks.picker.smart()<cr>";
+    options.desc = "Smart Find Files";
+  }
+  {
+    key = "<leader>,";
+    action = "<cmd>lua Snacks.picker.buffers()<cr>";
+    options.desc = "Buffers";
+  }
+  {
+    key = "<leader>/";
+    action = "<cmd>lua Snacks.picker.grep()<cr>";
+    options.desc = "Grep";
+  }
+  {
+    key = "<leader>:";
+    action = "<cmd>lua Snacks.picker.command_history()<cr>";
+    options.desc = "Command History";
+  }
+  {
+    key = "<leader>d";
+    action = "<cmd>Trouble diagnostics toggle<cr>";
+    options.desc = "Diagnostics";
+  }
+
+  # Find
+  {
+    key = "<leader>ff";
+    action = "<cmd>lua Snacks.picker.files()<cr>";
+    options.desc = "Find Files";
+  }
+  {
+    key = "<leader>fr";
+    action = "<cmd>lua Snacks.picker.recent()<cr>";
+    options.desc = "Recent";
+  }
+  {
+    key = "<leader>fn";
+    action = "<cmd>lua Snacks.picker.notifications()<cr>";
+    options.desc = "Notification History";
+  }
+
+  # Git
+  {
+    key = "<leader>gb";
+    action = "<cmd>lua Snacks.picker.git_branches()<cr>";
+    options.desc = "Git Branches";
+  }
+  {
+    key = "<leader>gB";
+    action = "<cmd>Gitsigns blame<cr>";
+    options.desc = "Git Blame File";
+  }
+  {
+    key = "<leader>gL";
+    action = "<cmd>lua Snacks.picker.git_log()<cr>";
+    options.desc = "Git Log Line";
+  }
+  {
+    key = "<leader>gs";
+    action = "<cmd>lua Snacks.picker.git_status()<cr>";
+    options.desc = "Git Status";
+  }
+  {
+    key = "<leader>gS";
+    action = "<cmd>lua Snacks.picker.git_stash()<cr>";
+    options.desc = "Git Stash";
+  }
+  {
+    key = "<leader>gd";
+    action = "<cmd>lua Snacks.picker.git_diff()<cr>";
+    options.desc = "Git Diff (Hunks)";
+  }
+  {
+    key = "<leader>gf";
+    action = "<cmd>lua Snacks.picker.git_log_file()<cr>";
+    options.desc = "Git Log File";
+  }
+
+  # Grep / Search
+  {
+    key = "<leader>sb";
+    action = "<cmd>lua Snacks.picker.lines()<cr>";
+    options.desc = "Buffer Lines";
+  }
+  {
+    key = "<leader>sB";
+    action = "<cmd>lua Snacks.picker.grep_buffers()<cr>";
+    options.desc = "Grep Open Buffers";
+  }
+  {
+    key = "<leader>sw";
+    action = "<cmd>lua Snacks.picker.grep_word()<cr>";
+    options.desc = "Visual selection or word";
+  }
+  {
+    key = "<leader>sr";
+    action = "<cmd>nohlsearch<cr>";
+    options.desc = "Reset search";
+  }
+
+  # LSP
+  {
+    key = "gd";
+    action = "<cmd>lua Snacks.picker.lsp_definitions()<cr>";
+    options.desc = "Goto Definition";
+  }
+  {
+    key = "gD";
+    action = "<cmd>lua Snacks.picker.lsp_declarations()<cr>";
+    options.desc = "Goto Declaration";
+  }
+  {
+    key = "gr";
+    action = "<cmd>lua Snacks.picker.lsp_references()<cr>";
+    options.desc = "References";
+    options.nowait = true;
+  }
+  {
+    key = "gI";
+    action = "<cmd>lua Snacks.picker.lsp_implementations()<cr>";
+    options.desc = "Goto Implementation";
+  }
+  {
+    key = "gy";
+    action = "<cmd>lua Snacks.picker.lsp_type_definitions()<cr>";
+    options.desc = "Goto Type Definition";
+  }
+  {
+    key = "<leader>ss";
+    action = "<cmd>lua Snacks.picker.lsp_symbols()<cr>";
+    options.desc = "LSP Symbols";
+  }
+  {
+    key = "<leader>sS";
+    action = "<cmd>lua Snacks.picker.lsp_workspace_symbols()<cr>";
+    options.desc = "LSP Workspace Symbols";
+  }
+  {
+    key = "<leader>ca";
+    action = "<cmd>lua vim.lsp.buf.code_action()<cr>";
+    options.desc = "Code action";
+  }
+  {
+    key = "<leader>cr";
+    action = "<cmd>lua vim.lsp.buf.rename()<cr>";
+    options.desc = "Rename";
+  }
+
+  # Pane splitting
+  {
+    key = "<leader>u";
+    action = "<cmd>split<cr>";
+    options.desc = "Split window horizontally";
+  }
+  {
+    key = "<leader>i";
+    action = "<cmd>vsplit<cr>";
+    options.desc = "Split window vertically";
+  }
+
+  # Pane navigation with smart-splits (integrates with tmux)
+  {
+    key = "<C-h>";
+    action = "<cmd>lua require('smart-splits').move_cursor_left()<cr>";
+    options.desc = "Move to left pane";
+  }
+  {
+    key = "<C-j>";
+    action = "<cmd>lua require('smart-splits').move_cursor_down()<cr>";
+    options.desc = "Move to pane below";
+  }
+  {
+    key = "<C-k>";
+    action = "<cmd>lua require('smart-splits').move_cursor_up()<cr>";
+    options.desc = "Move to pane above";
+  }
+  {
+    key = "<C-l>";
+    action = "<cmd>lua require('smart-splits').move_cursor_right()<cr>";
+    options.desc = "Move to right pane";
+  }
+
+  # Pane resizing with smart-splits
+  {
+    key = "<C-Left>";
+    action = "<cmd>lua require('smart-splits').resize_left()<cr>";
+    options.desc = "Resize pane left";
+  }
+  {
+    key = "<C-Down>";
+    action = "<cmd>lua require('smart-splits').resize_down()<cr>";
+    options.desc = "Resize pane down";
+  }
+  {
+    key = "<C-Up>";
+    action = "<cmd>lua require('smart-splits').resize_up()<cr>";
+    options.desc = "Resize pane up";
+  }
+  {
+    key = "<C-Right>";
+    action = "<cmd>lua require('smart-splits').resize_right()<cr>";
+    options.desc = "Resize pane right";
+  }
+]

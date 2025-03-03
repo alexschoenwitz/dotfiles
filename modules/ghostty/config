@@ -1,0 +1,23 @@
+# vi:ft=conf
+#
+# https://ghostty.org/docs/config/reference
+#
+clipboard-paste-protection = false
+clipboard-read = allow
+font-family = Noto Sans Mono
+font-size = 18
+mouse-hide-while-typing = true
+scrollback-limit = 1000000
+shell-integration = zsh
+theme = dark:Gruvbox Dark,light:Gruvbox Light Hard
+window-save-state = always
+window-theme = ghostty
+
+fullscreen=true
+
+macos-non-native-fullscreen=true
+macos-titlebar-style = hidden
+macos-option-as-alt = true
+
+# For claude
+keybind = shift+enter=text:\n
