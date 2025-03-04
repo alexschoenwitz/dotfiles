@@ -26,7 +26,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, darwin, mac-app-util, home-manager }:
+  outputs = { self, nixpkgs, darwin, mac-app-util, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle }:
     let
       username = "alexschoenwitz";
       system = "aarch64-darwin";
