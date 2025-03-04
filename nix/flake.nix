@@ -5,24 +5,15 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     darwin.url = "github:LnL7/nix-darwin";
     mac-app-util.url = "github:hraban/mac-app-util";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager = { url = "github:nix-community/home-manager"; };
     darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, darwin, mac-app-util, home-manager }:
     let
       configuration = { pkgs, config, ... }: {
-        environment.systemPackages = [
-          # https://github.com/nix-community/home-manager/issues/1341
-          pkgs.mkalias # Find packages installed by nix in spotlight
-          pkgs.wezterm
-          pkgs.neovim
-          pkgs.brave
-          pkgs.git
-        ];
+        environment.systemPackages =
+          [ pkgs.wezterm pkgs.neovim pkgs.brave pkgs.git ];
 
         # Necessary for using flakes on this system.
         nix.settings.experimental-features = "nix-command flakes";
