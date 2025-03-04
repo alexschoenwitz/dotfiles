@@ -47,13 +47,6 @@
                 "homebrew/homebrew-bundle" = homebrew-bundle;
               };
 
-              #onActivation.autoUpdate = true;
-              #onActivation.upgrade = true;
-              #onActivation.cleanup = "zap"; 
-              
-              #cask = [
-              #  "1password"
-              #];
             };
           }
           home-manager.darwinModules.home-manager
@@ -87,6 +80,15 @@
               brave
               git
             ];
+            homebrew = {
+              onActivation.autoUpdate = true;
+              onActivation.upgrade = true;
+              onActivation.cleanup = "zap"; 
+              
+              cask = [
+                "1password"
+              ];
+            };
             
             # User configuration
             users.users.${username} = {
