@@ -64,7 +64,7 @@
               NSGlobalDomain = {
                 AppleICUForce24HourTime = true;
                 AppleInterfaceStyle = "Dark";
-                KeyRepeat = 0;
+                KeyRepeat = 1;
                 InitialKeyRepeat = 15;
               };
             };
@@ -84,10 +84,11 @@
               ];
             homebrew = {
               enable = true;
-              onActivation.autoUpdate = true;
-              onActivation.upgrade = true;
-              #onActivation.cleanup = "zap";
-
+              onActivation = {
+                autoUpdate = true;
+                upgrade = true;
+                onActivation.cleanup = "zap";
+              };
               casks = [ "1password" ];
             };
 
