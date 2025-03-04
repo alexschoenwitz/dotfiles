@@ -56,7 +56,7 @@
             homebrew = {
               enable = true;
               onActivation.autoUpdate = true;
-              onActivation.autoUpgrade = true;
+              onActivation.upgrade = true;
               onActivation.cleanup = "zap"; 
               
               casks = [
