@@ -55,7 +55,7 @@
                 "1password"
               ];
             };
-          };
+          }
           home-manager.darwinModules.home-manager
           {
             # System configuration
