@@ -51,9 +51,9 @@
               onActivation.upgrade = true;
               onActivation.cleanup = "zap"; 
               
-              cask = [
-                "1password"
-              ];
+              #cask = [
+              #  "1password"
+              #];
             };
           }
           home-manager.darwinModules.home-manager
