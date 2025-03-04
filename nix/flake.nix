@@ -41,7 +41,11 @@
             };
             
             # System packages and settings
-            nixpkgs.hostPlatform = system;
+            nixpkgs = {
+            hostPlatform = system;
+              config.allowUnfree = true;
+              };
+
             environment.systemPackages = with nixpkgs.legacyPackages.${system}; [
               wezterm
               neovim
