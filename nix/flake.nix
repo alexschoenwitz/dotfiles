@@ -51,7 +51,7 @@
               onActivation.upgrade = true;
               onActivation.cleanup = "zap"; 
               
-              casks = [
+              cask = [
                 "1password"
               ];
             };
