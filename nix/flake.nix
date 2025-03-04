@@ -10,6 +10,20 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, darwin, mac-app-util, home-manager }:
@@ -53,8 +67,16 @@
               git
             ];
             
-            homebrew = {
+            nix-homebrew = {
               enable = true;
+              enableRosetta = true;
+              user = username;
+              taps = {
+                "homebrew/homebrew-core" = homebrew-core;
+                "homebrew/homebrew-cask" = homebrew-cask;
+                "homebrew/homebrew-bundle" = homebrew-bundle;
+              };
+
               onActivation.autoUpdate = true;
               onActivation.upgrade = true;
               onActivation.cleanup = "zap"; 
