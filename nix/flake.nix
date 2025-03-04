@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    darwin.url = "github:LnL7/nix-darwin/master";
+    darwin.url = "github:LnL7/nix-darwin";
     mac-app-util.url = "github:hraban/mac-app-util";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -12,7 +12,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, darwin, mac-app-util, home-manager }:
+  outputs = { self, nixpkgs, darwin, mac-app-util, home-manager }:
     let
       configuration = { pkgs, config, ... }: {
         environment.systemPackages = [
