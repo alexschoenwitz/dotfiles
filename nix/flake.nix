@@ -35,6 +35,27 @@
         inherit system;
         modules = [
           mac-app-util.darwinModules.default
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              enable = true;
+              enableRosetta = true;
+              user = username;
+              taps = {
+                "homebrew/homebrew-core" = homebrew-core;
+                "homebrew/homebrew-cask" = homebrew-cask;
+                "homebrew/homebrew-bundle" = homebrew-bundle;
+              };
+
+              onActivation.autoUpdate = true;
+              onActivation.upgrade = true;
+              onActivation.cleanup = "zap"; 
+              
+              casks = [
+                "1password"
+              ];
+            };
+          };
           home-manager.darwinModules.home-manager
           {
             # System configuration
@@ -66,25 +87,6 @@
               brave
               git
             ];
-            
-            nix-homebrew = {
-              enable = true;
-              enableRosetta = true;
-              user = username;
-              taps = {
-                "homebrew/homebrew-core" = homebrew-core;
-                "homebrew/homebrew-cask" = homebrew-cask;
-                "homebrew/homebrew-bundle" = homebrew-bundle;
-              };
-
-              onActivation.autoUpdate = true;
-              onActivation.upgrade = true;
-              onActivation.cleanup = "zap"; 
-              
-              casks = [
-                "1password"
-              ];
-            };
             
             # User configuration
             users.users.${username} = {
