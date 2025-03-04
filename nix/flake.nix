@@ -127,10 +127,8 @@
                   enableCompletion = true;
                   autosuggestion.enable = true;
                   syntaxHighlighting.enable = true;
-                  oh-my-zsh = {
-                    enable = true;
-                    plugins = [ "git" "sudo" ];
-                  };
+                  historySubstringSearch = { enable = true; };
+
                   initExtra = let
                     gruvbox-zsh-theme = pkgs.fetchFromGitHub {
                       owner = "sbugzu";
@@ -139,10 +137,27 @@
                       sha256 =
                         "sha256-pxG2PCw4hAgqu1T9DVjqdHM1t4g32B+N4URmAtoVdsU=";
                     };
+
+                    powerlevel10k = pkgs.fetchFromGitHub {
+                      owner = "romkatv";
+                      repo = "powerlevel10k";
+                      rev = "v1.18.0"; # Or latest
+                      sha256 =
+                        "sha256-IiMYGefF+p4bUueO/9/mJ4mHMyJYiq+67GgNdGJ6Eew=";
+                    };
+
                   in ''
+                    # Gruvbox Theme
                     source ${gruvbox-zsh-theme}/gruvbox.zsh-theme
                     SOLARIZED_THEME="dark"
                     GRUVBOX_DARK_PALETTE="dark"
+
+                    # Powerlevel10k Prompt
+                    source ${powerlevel10k}/powerlevel10k.zsh-theme
+
+                    # Minimal Powerlevel10k configuration
+                    typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status dir vcs)
+                    typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
                   '';
                 };
 
