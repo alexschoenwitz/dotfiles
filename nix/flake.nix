@@ -26,7 +26,8 @@
     };
   };
 
-  outputs = { self, nixpkgs, darwin, mac-app-util, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle }:
+  outputs = { self, nixpkgs, darwin, mac-app-util, home-manager, nix-homebrew
+    , homebrew-core, homebrew-cask, homebrew-bundle }:
     let
       username = "alexschoenwitz";
       system = "aarch64-darwin";
@@ -39,7 +40,7 @@
           {
             nix-homebrew = {
               enable = true;
-              enableRosetta = true;
+              #enableRosetta = true;
               user = username;
               taps = {
                 "homebrew/homebrew-core" = homebrew-core;
@@ -52,10 +53,10 @@
           home-manager.darwinModules.home-manager
           {
             # System configuration
-            nix.settings.experimental-features = ["nix-command" "flakes"];
+            nix.settings.experimental-features = [ "nix-command" "flakes" ];
             system.configurationRevision = self.rev or self.dirtyRev or null;
             system.stateVersion = 6;
-            
+
             # System defaults
             system.defaults = {
               dock.autohide = true;
@@ -67,35 +68,34 @@
                 InitialKeyRepeat = 15;
               };
             };
-            
+
             # System packages and settings
             nixpkgs = {
-            hostPlatform = system;
+              hostPlatform = system;
               config.allowUnfree = true;
-              };
+            };
 
-            environment.systemPackages = with nixpkgs.legacyPackages.${system}; [
-              wezterm
-              neovim
-              brave
-              git
-            ];
+            environment.systemPackages =
+              with nixpkgs.legacyPackages.${system}; [
+                wezterm
+                neovim
+                brave
+                git
+              ];
             homebrew = {
               onActivation.autoUpdate = true;
               onActivation.upgrade = true;
-              onActivation.cleanup = "zap"; 
-              
-              casks = [
-                "1password"
-              ];
+              #onActivation.cleanup = "zap";
+
+              casks = [ "1password" ];
             };
-            
+
             # User configuration
             users.users.${username} = {
               name = username;
               home = "/Users/${username}";
             };
-            
+
             # Home Manager configuration
             home-manager = {
               useGlobalPkgs = true;
@@ -111,14 +111,14 @@
                   cargo
                   _1password-cli
                 ];
-                
+
                 # Git config
                 programs.git = {
                   enable = true;
                   userName = "Alexandre Schönwitz";
                   userEmail = "alexandre.schoenwitz@gmail.com";
                 };
-                
+
                 # Zsh config with Gruvbox theme
                 programs.zsh = {
                   enable = true;
@@ -134,7 +134,8 @@
                       owner = "sbugzu";
                       repo = "gruvbox-zsh";
                       rev = "c54443c8d3da35037b7ae3ca73b30b45bc91a9e7";
-                      sha256 = "sha256-pxG2PCw4hAgqu1T9DVjqdHM1t4g32B+N4URmAtoVdsU=";
+                      sha256 =
+                        "sha256-pxG2PCw4hAgqu1T9DVjqdHM1t4g32B+N4URmAtoVdsU=";
                     };
                   in ''
                     source ${gruvbox-zsh-theme}/gruvbox.zsh-theme
@@ -142,7 +143,7 @@
                     GRUVBOX_DARK_PALETTE="dark"
                   '';
                 };
-                
+
                 # Neovim with LazyVim & Gruvbox
                 programs.neovim = {
                   enable = true;
@@ -150,7 +151,7 @@
                   viAlias = true;
                   vimAlias = true;
                 };
-                
+
                 # Configuration files
                 xdg.configFile = {
                   # Gruvbox theme for oh-my-zsh
@@ -159,10 +160,11 @@
                       owner = "sbugzu";
                       repo = "gruvbox-zsh";
                       rev = "c54443c8d3da35037b7ae3ca73b30b45bc91a9e7";
-                      sha256 = "sha256-pxG2PCw4hAgqu1T9DVjqdHM1t4g32B+N4URmAtoVdsU=";
+                      sha256 =
+                        "sha256-pxG2PCw4hAgqu1T9DVjqdHM1t4g32B+N4URmAtoVdsU=";
                     };
                   in "${gruvbox-zsh-theme}/gruvbox.zsh-theme";
-                  
+
                   # WezTerm with Gruvbox
                   "wezterm/wezterm.lua".text = ''
                     local wezterm = require 'wezterm'
@@ -174,18 +176,19 @@
 
                     return config
                   '';
-                  
+
                   # LazyVim configuration
                   "nvim" = {
                     source = pkgs.fetchFromGitHub {
                       owner = "LazyVim";
                       repo = "starter";
                       rev = "main";
-                      sha256 = "sha256-QrpnlDD4r1X4C8PqBhQ+S3ar5C+qDrU1Jm/lPqyMIFM=";
+                      sha256 =
+                        "sha256-QrpnlDD4r1X4C8PqBhQ+S3ar5C+qDrU1Jm/lPqyMIFM=";
                     };
                     recursive = true;
                   };
-                  
+
                   # Neovim plugins
                   "nvim/lua/plugins/colorscheme.lua".text = ''
                     return {
@@ -198,7 +201,7 @@
                       },
                     }
                   '';
-                  
+
                   "nvim/lua/plugins/lsp.lua".text = ''
                     return {
                       {
