@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   # Gruvbox theme for Oh-My-Zsh
@@ -21,7 +21,6 @@ in {
 
       oh-my-zsh = {
         enable = true;
-        # Remove the theme property here
         plugins = [ "git" "sudo" ];
       };
 

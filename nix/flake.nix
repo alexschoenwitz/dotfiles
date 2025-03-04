@@ -12,7 +12,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, darwin, nixpkgs, mac-app-util, home-manager }:
+  outputs = { self, darwin, mac-app-util, home-manager }:
     let
       configuration = { pkgs, config, ... }: {
         environment.systemPackages = [
