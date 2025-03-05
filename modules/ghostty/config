@@ -1,0 +1,9 @@
+# vi:ft=conf
+#
+# https://ghostty.org/docs/config/reference
+#
+#
+
+theme = GruvboxDarkHard
+
+
