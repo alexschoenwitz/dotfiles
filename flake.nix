@@ -48,6 +48,7 @@
                   ./modules/git
                   ./modules/nvim
                   ./modules/ghostty
+                  ./modules/zsh
                 ];
               };
             }
