@@ -20,7 +20,6 @@
       git
       jq
       kubectl
-      neovim
       ripgrep
       zsh
 
