@@ -14,11 +14,15 @@
       _1password-cli
       argocd
       cargo
+      colima
       curl
+      docker
+      docker-compose
       git
       jq
       kubectl
       ripgrep
+      websocat
       zsh-powerlevel10k
       zsh-autosuggestions
 
