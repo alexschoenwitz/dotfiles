@@ -35,7 +35,7 @@
         orientation = "bottom";
         tilesize = 42;
         showhidden = true;
-        show-recents = true;
+        show-recents = false;
         show-process-indicators = true;
         expose-animation-duration = 0.1;
         expose-group-apps = true;

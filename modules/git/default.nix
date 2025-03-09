@@ -1,11 +1,14 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   home.packages = with pkgs; [ git-lfs ];
   programs.git = {
     enable = true;
     delta.enable = true;
     userName = "Alexandre Schönwitz";
     userEmail = "alexandre.schoenwitz@gmail.com";
-    lfs = { enable = true; };
+    lfs = {
+      enable = true;
+    };
     aliases = {
       co = "checkout";
       count = "shortlog -sn";
@@ -37,9 +40,15 @@
         branch = "auto";
         ui = true;
       };
-      advice = { addEmptyPathspec = false; };
-      apply = { whitespace = "nowarn"; };
-      help = { autocorrect = 1; };
+      advice = {
+        addEmptyPathspec = false;
+      };
+      apply = {
+        whitespace = "nowarn";
+      };
+      help = {
+        autocorrect = 1;
+      };
       grep = {
         extendRegexp = true;
         lineNumber = true;
@@ -48,12 +57,24 @@
         autoSetupRemote = true;
         default = "simple";
       };
-      submodule = { fetchJobs = 4; };
-      log = { showSignature = false; };
-      format = { signOff = true; };
-      rerere = { enabled = true; };
-      pull = { ff = "only"; };
-      init = { defaultBranch = "main"; };
+      submodule = {
+        fetchJobs = 4;
+      };
+      log = {
+        showSignature = false;
+      };
+      format = {
+        signOff = true;
+      };
+      rerere = {
+        enabled = true;
+      };
+      pull = {
+        ff = "only";
+      };
+      init = {
+        defaultBranch = "main";
+      };
     };
     ignores = lib.splitString "\n" (builtins.readFile ./gitignore_global);
   };

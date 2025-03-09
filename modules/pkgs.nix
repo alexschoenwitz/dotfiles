@@ -13,15 +13,12 @@
     [
       _1password-cli
       argocd
-      bat
-      brave
       cargo
       curl
       git
       jq
       kubectl
       ripgrep
-      zsh
 
       # treesitter, lsps, formatters, etc
       bash-language-server
