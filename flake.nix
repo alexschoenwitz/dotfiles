@@ -67,12 +67,6 @@
               (writeScriptBin "dot-clean" ''
                 nix-collect-garbage -d --delete-older-than 30d
               '')
-              (writeScriptBin "dot-release" ''
-                tag="$(date +%Y).$(expr $(date +%m) + 0).$(expr $(date +%d) + 0)"
-                git tag -m "$tag" "$tag"
-                git push --tags
-                goreleaser release --clean
-              '')
               (writeScriptBin "dot-sync" ''
                 git pull --rebase origin main
                 nix flake update

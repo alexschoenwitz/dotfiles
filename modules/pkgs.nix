@@ -20,6 +20,7 @@
       kubectl
       ripgrep
       zsh-powerlevel10k
+      zsh-autosuggestions
 
       # treesitter, lsps, formatters, etc
       bash-language-server
