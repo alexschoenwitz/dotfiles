@@ -41,7 +41,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
-              home-manager.users.alexschoenwitz = {
+              home-manager.users."alexandre.schoenwitz" = {
                 imports = [
                   ./modules/home.nix
                   ./modules/pkgs.nix
@@ -63,7 +63,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
-              home-manager.users.alexschoenwitz = {
+              home-manager.users."alexandre.schoenwitz" = {
                 imports = [
                   ./modules/home.nix
                   ./modules/pkgs.nix

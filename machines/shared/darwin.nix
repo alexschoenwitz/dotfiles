@@ -6,7 +6,7 @@
   nix.package = pkgs.nix;
   nix.settings.trusted-users = [
     "root"
-    "alexschoenwitz"
+    "alexandre.schoenwitz"
   ];
   # do not try to manage nix installation:
   nix.enable = false;
@@ -14,9 +14,9 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  users.users.alexschoenwitz = {
-    name = "alexschoenwitz";
-    home = "/Users/alexschoenwitz";
+  users.users."alexandre.schoenwitz" = {
+    name = "alexandre.schoenwitz";
+    home = "/Users/alexandre.schoenwitz";
   };
 
   homebrew = {
