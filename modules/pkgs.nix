@@ -23,8 +23,8 @@
       kubectl
       ripgrep
       websocat
-      zsh-powerlevel10k
       zsh-autosuggestions
+      zsh-powerlevel10k
 
       # treesitter, lsps, formatters, etc
       bash-language-server
