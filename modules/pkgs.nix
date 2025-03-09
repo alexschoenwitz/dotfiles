@@ -19,6 +19,7 @@
       jq
       kubectl
       ripgrep
+      zsh-powerlevel10k
 
       # treesitter, lsps, formatters, etc
       bash-language-server
