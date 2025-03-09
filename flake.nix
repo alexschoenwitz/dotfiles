@@ -45,6 +45,7 @@
                 imports = [
                   ./modules/home.nix
                   ./modules/pkgs.nix
+                  ./modules/go.nix
                   ./modules/git
                   ./modules/nvim
                   ./modules/ghostty
