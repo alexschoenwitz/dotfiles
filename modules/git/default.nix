@@ -23,6 +23,7 @@
       unshallow = "fetch --prune --tags --unshallow";
     };
     extraConfig = {
+      url."ssh://git@github.com/".insteadOf = "https://github.com/";
       commit.gpgSign = true;
       gpg.format = "ssh";
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
