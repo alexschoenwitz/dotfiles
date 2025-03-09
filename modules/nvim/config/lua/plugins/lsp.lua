@@ -4,6 +4,8 @@ return {
     opts = {
       servers = {
         nil_ls = {},
+        omnisharp = {},
+        gopls = {},
       },
     },
   },
@@ -13,6 +15,8 @@ return {
     opts = {
       formatters_by_ft = {
         nix = { "nixfmt" },
+        csharp = { "csharpier" },
+        go = { "gofumpt", "goimports" },
       },
     },
   },
