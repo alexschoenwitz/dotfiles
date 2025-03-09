@@ -33,10 +33,32 @@
     in
     {
       darwinConfigurations = {
-        alexschoenwitz = darwin.lib.darwinSystem {
+        home = darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           modules = [
             ./machines/home
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = false;
+              home-manager.users.alexschoenwitz = {
+                imports = [
+                  ./modules/home.nix
+                  ./modules/pkgs.nix
+                  ./modules/go.nix
+                  ./modules/git
+                  ./modules/nvim
+                  ./modules/ghostty
+                  ./modules/zsh
+                ];
+              };
+            }
+          ];
+        };
+        work = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = [
+            ./machines/work
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
