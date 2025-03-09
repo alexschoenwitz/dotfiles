@@ -35,5 +35,8 @@
       typescript-language-server
       yaml-language-server
       yamllint
+      dotnet-sdk
+      gopls
+      csharpier
     ];
 }
