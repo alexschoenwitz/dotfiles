@@ -17,6 +17,7 @@
       imagemagick
       jq
       kubectl
+      lazygit
       ripgrep
       websocat
       zsh-autosuggestions
@@ -32,6 +33,7 @@
       bash-language-server
       clang-tools # clangd lsp
       gofumpt
+      gotools
       nil # nix lsp
       nixfmt-rfc-style
       prettier
@@ -44,6 +46,7 @@
       yaml-language-server
       yamllint
       dotnet-sdk
+      shfmt
       gopls
       csharpier
 
