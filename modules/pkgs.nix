@@ -11,6 +11,7 @@
       curl
       docker
       docker-compose
+      fzf
       git
       grpcurl
       imagemagick
@@ -20,6 +21,12 @@
       websocat
       zsh-autosuggestions
       zsh-powerlevel10k
+
+      # required by snacks.image
+      ghostscript
+      tectonic
+      mermaid-cli
+      fd
 
       # treesitter, lsps, formatters, etc
       bash-language-server
