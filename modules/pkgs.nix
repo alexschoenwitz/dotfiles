@@ -12,6 +12,8 @@
       docker
       docker-compose
       git
+      grpcurl
+      imagemagick
       jq
       kubectl
       ripgrep
@@ -26,6 +28,8 @@
       nil # nix lsp
       nixfmt-rfc-style
       prettier
+      lua-language-server
+      prettierd
       shellcheck
       stylua
       tree-sitter
@@ -35,5 +39,11 @@
       dotnet-sdk
       gopls
       csharpier
+
+      # Rust tools
+      rustc
+      rustfmt
+      rust-analyzer
+      clippy
     ];
 }
