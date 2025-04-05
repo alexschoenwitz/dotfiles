@@ -10,6 +10,7 @@ return {
         gopls = {}, -- go
         rust_analyzer = {}, -- rust
         tsserver = {}, -- ts
+        terraformls = {}, -- terraform
         -- ts_ls = {}, -- ts
       },
     },
@@ -30,6 +31,10 @@ return {
         json = { "prettierd", "prettier", stop_after_first = true },
         html = { "prettierd", "prettier", stop_after_first = true },
         css = { "prettierd", "prettier", stop_after_first = true },
+        hcl = { "packer_fmt" },
+        terraform = { "terraform_fmt" },
+        tf = { "terraform_fmt" },
+        ["terraform-vars"] = { "terraform_fmt" },
       },
     },
   },
