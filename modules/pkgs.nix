@@ -49,6 +49,7 @@
       shfmt
       gopls
       csharpier
+      terraform-ls
 
       # Rust tools
       rustc
