@@ -19,6 +19,7 @@
       kubectl
       lazygit
       ripgrep
+      terraform
       websocat
       zsh-autosuggestions
       zsh-powerlevel10k
@@ -32,24 +33,25 @@
       # treesitter, lsps, formatters, etc
       bash-language-server
       clang-tools # clangd lsp
+      csharpier
+      dotnet-sdk
       gofumpt
+      gopls
       gotools
+      lua-language-server
       nil # nix lsp
       nixfmt-rfc-style
       prettier
-      lua-language-server
       prettierd
       shellcheck
+      shfmt
       stylua
+      terraform-ls
+      tflint
       tree-sitter
       typescript-language-server
       yaml-language-server
       yamllint
-      dotnet-sdk
-      shfmt
-      gopls
-      csharpier
-      terraform-ls
 
       # Rust tools
       rustc
