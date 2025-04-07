@@ -6,11 +6,13 @@
     [
       _1password-cli
       argocd
+      buf
       cargo
       colima
       curl
       docker
       docker-compose
+      evans
       fzf
       git
       grpcurl
