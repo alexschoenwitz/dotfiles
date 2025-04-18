@@ -22,6 +22,7 @@
       lazygit
       ripgrep
       terraform
+      tmux
       websocat
       zsh-autosuggestions
       zsh-powerlevel10k
@@ -36,7 +37,7 @@
       bash-language-server
       clang-tools # clangd lsp
       csharpier
-      dotnet-sdk
+      dotnet-sdk_9
       gofumpt
       gopls
       gotools

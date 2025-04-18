@@ -8,6 +8,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,6 +24,7 @@
       darwin,
       home-manager,
       nixpkgs,
+      nixvim,
       ...
     }:
     let
@@ -41,6 +47,9 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
+              home-manager.sharedModules = [
+                nixvim.homeManagerModules.nixvim
+              ];
               home-manager.users."alexandre.schoenwitz" = {
                 imports = [
                   ./modules/home.nix
@@ -48,8 +57,10 @@
                   ./modules/aider.nix
                   ./modules/go.nix
                   ./modules/git
-                  ./modules/nvim
                   ./modules/ghostty
+                  #./modules/nvim
+                  ./modules/nixvim
+                  ./modules/tmux
                   ./modules/zsh
                 ];
               };
@@ -102,8 +113,8 @@
                   sudo nixos-rebuild switch --flake .#
                 fi
                 if test $(uname -s) == "Darwin"; then
-                  nix build "./#darwinConfigurations.$(hostname | cut -f1 -d'.').system"
-                  ./result/sw/bin/darwin-rebuild switch --flake .
+                  nix build "./#darwinConfigurations.$(hostname | cut -f1 -d'.').system" 
+                  ./result/sw/bin/darwin-rebuild switch --flake . 
                 fi
               '')
             ];
