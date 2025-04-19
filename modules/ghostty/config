@@ -14,6 +14,9 @@ window-decoration = false
 window-save-state = always
 window-theme = ghostty
 
+fullscreen=true
+macos-non-native-fullscreen=visible-menu
+
 # Keybinds
 #keybind = ctrl+n=new_window
 #

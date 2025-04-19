@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   programs.nixvim = {
     globals.mapleader = " ";
@@ -34,8 +33,5 @@
     };
 
     colorschemes.gruvbox.enable = true;
-    extraPlugins = with pkgs.vimPlugins; [
-      vim-tpipeline
-    ];
   };
 }

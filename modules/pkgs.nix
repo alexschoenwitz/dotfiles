@@ -23,6 +23,7 @@
       ripgrep
       terraform
       tmux
+      tree
       websocat
       zsh-autosuggestions
       zsh-powerlevel10k

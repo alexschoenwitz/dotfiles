@@ -1,6 +1,6 @@
 {
   bufferline.enable = true;
-  oil.enable = true;
+  lualine.enable = true;
   treesitter.enable = true;
   web-devicons.enable = true;
   which-key.enable = true;
@@ -35,6 +35,7 @@
     enable = true;
     settings = {
       picker.enabled = true;
+      explorer.enabled = true;
     };
   };
 
@@ -155,6 +156,5 @@
         tf = [ "terraform_fmt" ];
       };
     };
-
   };
 }
