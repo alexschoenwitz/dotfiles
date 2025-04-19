@@ -13,6 +13,11 @@
   {
     key = "<leader>/";
     action = "<cmd>lua Snacks.picker.git_grep()<cr>";
+    options.desc = "Git Grep";
+  }
+  {
+    key = "<leader>.";
+    action = "<cmd>lua Snacks.picker.grep()<cr>";
     options.desc = "Grep";
   }
   {
@@ -24,6 +29,12 @@
     key = "<leader>e";
     action = "<cmd>lua Snacks.explorer()<cr>";
     options.desc = "File Explorer";
+  }
+
+  {
+    key = "<leader>xx";
+    action = "<cmd>Trouble diagnostics toggle<cr>";
+    options.desc = "Diagnostics";
   }
 
   # Find
@@ -93,6 +104,16 @@
     key = "<leader>gf";
     action = "<cmd>lua Snacks.picker.git_log_file()<cr>";
     options.desc = "Git Log File";
+  }
+  {
+    key = "<leader>gg";
+    action = "<cmd>lua Snacks.lazygit()<cr>";
+    options.desc = "Lazygit";
+  }
+  {
+    key = "<leader>gb";
+    action = "<cmd>lua Snacks.git.blame_line()<cr>";
+    options.desc = "Git Blame";
   }
 
   # Grep
