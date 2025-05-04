@@ -32,17 +32,12 @@
   }
 
   {
-    key = "<leader>xx";
+    key = "<leader>d";
     action = "<cmd>Trouble diagnostics toggle<cr>";
     options.desc = "Diagnostics";
   }
 
   # Find
-  {
-    key = "<leader>fb";
-    action = "<cmd>lua Snacks.picker.buffers()<cr>";
-    options.desc = "Buffers";
-  }
   {
     key = "<leader>fc";
     action = ''<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath("config") })<cr>'';
@@ -81,6 +76,11 @@
     options.desc = "Git Branches";
   }
   {
+    key = "<leader>gB";
+    action = "<cmd>lua Snacks.git.blame_line()<cr>";
+    options.desc = "Git Blame Line";
+  }
+  {
     key = "<leader>gL";
     action = "<cmd>lua Snacks.picker.git_log()<cr>";
     options.desc = "Git Log Line";
@@ -110,13 +110,8 @@
     action = "<cmd>lua Snacks.lazygit()<cr>";
     options.desc = "Lazygit";
   }
-  {
-    key = "<leader>gb";
-    action = "<cmd>lua Snacks.git.blame_line()<cr>";
-    options.desc = "Git Blame";
-  }
 
-  # Grep
+  # Grep / Search
   {
     key = "<leader>sb";
     action = "<cmd>lua Snacks.picker.lines()<cr>";
@@ -131,11 +126,6 @@
     key = "<leader>sB";
     action = "<cmd>lua Snacks.picker.grep_buffers()<cr>";
     options.desc = "Grep Open Buffers";
-  }
-  {
-    key = "<leader>sg";
-    action = "<cmd>lua Snacks.picker.grep()<cr>";
-    options.desc = "Grep";
   }
   {
     key = "<leader>sw";
