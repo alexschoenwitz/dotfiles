@@ -17,6 +17,11 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    mac-app-util = {
+      url = "github:hraban/mac-app-util/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -25,6 +30,7 @@
       home-manager,
       nixpkgs,
       nixvim,
+      mac-app-util,
       ...
     }:
     let
@@ -43,12 +49,14 @@
           system = "aarch64-darwin";
           modules = [
             ./machines/home
+            mac-app-util.darwinModules.default
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
               home-manager.sharedModules = [
                 nixvim.homeManagerModules.nixvim
+                mac-app-util.homeManagerModules.default
               ];
               home-manager.users."alexandre.schoenwitz" = {
                 imports = [
@@ -58,7 +66,7 @@
                   ./modules/go.nix
                   ./modules/git
                   ./modules/ghostty
-                  #./modules/nvim
+                  ./modules/vscode
                   ./modules/nixvim
                   ./modules/tmux
                   ./modules/zsh

@@ -191,5 +191,9 @@
     action = "<cmd>lua vim.lsp.buf.code_action()<cr>";
     options.desc = "Code action";
   }
-
+  {
+    key = "<leader>ca";
+    action = "<cmd>lua vim.lsp.buf.code_action()<cr>";
+    options.desc = "Code action";
+  }
 ]

@@ -14,12 +14,15 @@
       docker-compose
       evans
       fzf
+      google-cloud-sdk
       git
       grpcurl
       imagemagick
       jq
       kubectl
       lazygit
+      npm
+      postgresql_17_jit
       ripgrep
       terraform
       tmux
