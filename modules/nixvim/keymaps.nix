@@ -185,12 +185,6 @@
     action = "<cmd>lua Snacks.picker.lsp_workspace_symbols()<cr>";
     options.desc = "LSP Workspace Symbols";
   }
-
-  {
-    key = "<leader>ca";
-    action = "<cmd>lua vim.lsp.buf.code_action()<cr>";
-    options.desc = "Code action";
-  }
   {
     key = "<leader>ca";
     action = "<cmd>lua vim.lsp.buf.code_action()<cr>";

@@ -20,7 +20,6 @@
       ruler = true;
       gdefault = true;
       scrolloff = 5;
-      autochdir = true;
       showmode = false; # Already have a statusline
       fillchars = {
         foldopen = "";

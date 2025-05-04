@@ -1,10 +1,10 @@
 {
   bufferline.enable = true;
   lualine.enable = true;
+  render-markdown.enable = true;
   treesitter.enable = true;
   web-devicons.enable = true;
   which-key.enable = true;
-  render-markdown.enable = true;
   blink-cmp = {
     enable = true;
     settings = {
@@ -176,30 +176,6 @@
               "<leader>l1",
               ":PopulateQuickfixDotnet<CR>",
               { buffer = bufnr, remap = false, silent = true, desc = "Populate dotnet errors" }
-            )
-            vim.keymap.set(
-              "n",
-              "gd",
-              "<cmd>lua require('omnisharp_extended').lsp_definition()<cr>",
-              { remap = false, silent = true, desc = "LSP: [G]oto [D]efinition" }
-            )
-            vim.keymap.set(
-              "n",
-              "<leader>ld",
-              "<cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>",
-              { remap = false, silent = true, desc = "Type [D]efinition" }
-            )
-            vim.keymap.set(
-              "n",
-              "gr",
-              "<cmd>lua require('omnisharp_extended').lsp_references()<cr>",
-              { remap = false, silent = true, desc = "LSP: [G]o to [R]eferences" }
-            )
-            vim.keymap.set(
-              "n",
-              "gi",
-              "<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>",
-              { noremap = true, silent = true, desc = "LSP: [G]o to [I]mplementation" }
             )
           '';
       };
