@@ -5,7 +5,7 @@
     enable = true;
     delta.enable = true;
     userName = "Alexandre Schönwitz";
-    userEmail = "alexandre.schoenwitz@gmail.com";
+    userEmail = "alexandre.schoenwitz@freiheit.com";
     lfs = {
       enable = true;
     };
@@ -24,10 +24,6 @@
     };
     extraConfig = {
       url."ssh://git@github.com/".insteadOf = "https://github.com/";
-      commit.gpgSign = true;
-      gpg.format = "ssh";
-      gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
-      user.signingKey = "~/.ssh/id_ed25519";
       core = {
         editor = "nvim";
         compression = -1;
