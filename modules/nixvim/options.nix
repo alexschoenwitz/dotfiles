@@ -31,6 +31,11 @@
       };
     };
 
-    colorschemes.gruvbox.enable = true;
+    colorschemes.gruvbox = {
+      enable = true;
+      settings = {
+        contrast = "hard";
+      };
+    };
   };
 }

@@ -10,6 +10,7 @@
       cargo
       colima
       curl
+      direnv
       docker
       docker-compose
       evans
@@ -21,7 +22,7 @@
       jq
       kubectl
       lazygit
-      npm
+      nodejs
       postgresql_17_jit
       ripgrep
       terraform

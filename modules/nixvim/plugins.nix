@@ -71,6 +71,13 @@
     };
   };
 
+  gitsigns = {
+    enable = true;
+    settings = {
+      current_line_blame = true;
+    };
+  };
+
   lsp = {
     enable = true;
     inlayHints = true;
