@@ -106,6 +106,3 @@ result-*
 ###
 # custom stuff
 coverage.txt
-
-###
-.aider*

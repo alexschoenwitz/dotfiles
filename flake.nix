@@ -60,15 +60,14 @@
               ];
               home-manager.users."alexandre.schoenwitz" = {
                 imports = [
-                  ./modules/home.nix
-                  ./modules/pkgs.nix
-                  ./modules/aider.nix
-                  ./modules/go.nix
-                  ./modules/git
                   ./modules/ghostty
-                  ./modules/vscode
+                  ./modules/git
+                  ./modules/go.nix
+                  ./modules/home.nix
                   ./modules/nixvim
+                  ./modules/pkgs.nix
                   ./modules/tmux
+                  ./modules/vscode
                   ./modules/zsh
                 ];
               };
@@ -79,18 +78,25 @@
           system = "aarch64-darwin";
           modules = [
             ./machines/work
+            mac-app-util.darwinModules.default
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
+              home-manager.sharedModules = [
+                nixvim.homeManagerModules.nixvim
+                mac-app-util.homeManagerModules.default
+              ];
               home-manager.users."alexandre.schoenwitz" = {
                 imports = [
-                  ./modules/home.nix
-                  ./modules/pkgs.nix
-                  ./modules/go.nix
-                  ./modules/git
-                  ./modules/nvim
                   ./modules/ghostty
+                  ./modules/git
+                  ./modules/go.nix
+                  ./modules/home.nix
+                  ./modules/nixvim
+                  ./modules/pkgs.nix
+                  ./modules/tmux
+                  ./modules/vscode
                   ./modules/zsh
                 ];
               };
