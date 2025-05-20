@@ -1,6 +1,4 @@
 {
-  bufferline.enable = true;
-  lualine.enable = true;
   render-markdown.enable = true;
   treesitter.enable = true;
   web-devicons.enable = true;

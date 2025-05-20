@@ -1,7 +1,17 @@
+{ lib, ... }:
 {
   programs.nixvim = {
     globals.mapleader = " ";
+
+    highlight = {
+      StatusLine = {
+        link = "StatusLineNC";
+      };
+    };
+
     opts = {
+      termguicolors = lib.mkForce false;
+      statusline = " %{mode()} | %f%m%r %=%l:%c %p%% ";
       undofile = true;
       number = true;
       relativenumber = true;
@@ -31,11 +41,5 @@
       };
     };
 
-    colorschemes.gruvbox = {
-      enable = true;
-      settings = {
-        contrast = "hard";
-      };
-    };
   };
 }

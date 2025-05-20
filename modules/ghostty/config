@@ -2,37 +2,17 @@
 #
 # https://ghostty.org/docs/config/reference
 #
-#
 clipboard-paste-protection = false
 clipboard-read = allow
 font-family = JetBrains Mono
 mouse-hide-while-typing = true
 scrollback-limit = 1000000
 shell-integration = zsh
-theme = GruvboxDarkHard
+theme = dark:GruvboxDarkHard,light:GruvboxLightHard
 window-decoration = false
 window-save-state = always
 window-theme = ghostty
 
 fullscreen=true
 macos-non-native-fullscreen=visible-menu
-
-# Keybinds
-#keybind = ctrl+n=new_window
-#
-#keybind = unconsumed:ctrl+h=goto_split:left
-#keybind = unconsumed:ctrl+j=goto_split:bottom
-#keybind = unconsumed:ctrl+k=goto_split:top
-#keybind = unconsumed:ctrl+l=goto_split:right
-#
-#keybind = ctrl+a>h=new_split:left
-#keybind = ctrl+a>j=new_split:down
-#keybind = ctrl+a>k=new_split:up
-#keybind = ctrl+a>l=new_split:right
-#keybind = ctrl+a>f=toggle_split_zoom
-#
-#keybind = ctrl+a>n=next_tab
-#keybind = ctrl+a>p=previous_tab
-#
-#keybind = super+r=reload_config
 
