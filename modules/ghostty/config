@@ -9,10 +9,11 @@ mouse-hide-while-typing = true
 scrollback-limit = 1000000
 shell-integration = zsh
 theme = dark:GruvboxDarkHard,light:GruvboxLightHard
-window-decoration = false
 window-save-state = always
 window-theme = ghostty
 
 fullscreen=true
-macos-non-native-fullscreen=visible-menu
+
+macos-non-native-fullscreen=true
+macos-titlebar-style = hidden
 
