@@ -9,19 +9,6 @@
     lfs = {
       enable = true;
     };
-    aliases = {
-      co = "checkout";
-      count = "shortlog -sn";
-      g = "grep --break --heading --line-number";
-      gi = "grep --break --heading --line-number -i";
-      changed = ''show --pretty="format:" --name-only'';
-      fm = "fetch-merge";
-      please = "push --force-with-lease";
-      commit = "commit -s";
-      commend = "commit -s --amend --no-edit";
-      lt = "log --tags --decorate --simplify-by-decoration --oneline";
-      unshallow = "fetch --prune --tags --unshallow";
-    };
     extraConfig = {
       commit.gpgsign = true;
       gpg.format = "ssh";
