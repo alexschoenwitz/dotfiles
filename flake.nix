@@ -67,7 +67,6 @@
                   ./modules/nixvim
                   ./modules/pkgs.nix
                   ./modules/tmux
-                  ./modules/vscode
                   ./modules/zsh
                 ];
               };
@@ -96,7 +95,6 @@
                   ./modules/nixvim
                   ./modules/pkgs.nix
                   ./modules/tmux
-                  ./modules/vscode
                   ./modules/zsh
                 ];
               };

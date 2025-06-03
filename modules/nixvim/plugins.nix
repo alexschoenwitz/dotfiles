@@ -233,4 +233,12 @@
       };
     };
   };
+
+  precognition = {
+    enable = true;
+  };
+
+  hardtime = {
+    enable = true;
+  };
 }

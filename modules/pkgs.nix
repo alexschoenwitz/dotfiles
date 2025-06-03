@@ -17,6 +17,7 @@
       fzf
       google-cloud-sdk
       git
+      gnupg
       grpcurl
       imagemagick
       jq

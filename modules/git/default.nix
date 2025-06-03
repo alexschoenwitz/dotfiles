@@ -23,6 +23,9 @@
       unshallow = "fetch --prune --tags --unshallow";
     };
     extraConfig = {
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      user.signingKey = "~/.ssh/id_ed25519";
       url."ssh://git@github.com/".insteadOf = "https://github.com/";
       core = {
         editor = "nvim";
