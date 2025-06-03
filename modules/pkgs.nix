@@ -19,6 +19,7 @@
       git
       gnupg
       grpcurl
+      grpcui
       imagemagick
       jq
       kubectl
