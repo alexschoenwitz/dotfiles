@@ -28,6 +28,7 @@
   };
 
   system = {
+    primaryUser = "alexandre.schoenwitz";
     defaults = {
       dock = {
         autohide = true;

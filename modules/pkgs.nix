@@ -43,7 +43,7 @@
       bash-language-server
       clang-tools # clangd lsp
       csharpier
-      dotnet-sdk_9
+      dotnet-sdk_8
       gofumpt
       gopls
       gotools

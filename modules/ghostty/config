@@ -8,7 +8,7 @@ font-family = JetBrains Mono
 mouse-hide-while-typing = true
 scrollback-limit = 1000000
 shell-integration = zsh
-theme = dark:GruvboxDarkHard,light:GruvboxLightHard
+theme = dark:catppuccin-frappe,light:catppuccin-latte
 window-save-state = always
 window-theme = ghostty
 
@@ -16,4 +16,4 @@ fullscreen=true
 
 macos-non-native-fullscreen=true
 macos-titlebar-style = hidden
-
+macos-option-as-alt = true
