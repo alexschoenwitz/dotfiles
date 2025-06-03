@@ -5,7 +5,7 @@
     enable = true;
     delta.enable = true;
     userName = "Alexandre Schönwitz";
-    userEmail = "alexandre.schoenwitz@freiheit.com";
+    # Set per machine userEmail = "alexandre.schoenwitz@gmail.com";
     lfs = {
       enable = true;
     };

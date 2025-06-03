@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [
-    ../shared/darwin.nix
-  ];
+  imports = [ ../shared/darwin.nix ];
+  home-manager.users."alexandre.schoenwitz".programs.git.userEmail = "alexandre.schoenwitz@gmail.com";
 }
