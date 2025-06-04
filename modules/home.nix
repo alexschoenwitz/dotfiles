@@ -3,6 +3,11 @@
   home.username = "alexandre.schoenwitz";
   home.stateVersion = "24.11";
 
+  #services.ssh-agent.enable = true;
+  #services.ssh-agent.keys = [
+  #  "~/.ssh/id_ed25519"
+  #  "~/.ssh/id_rsa"
+  #];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   programs.nix-index.enable = true;

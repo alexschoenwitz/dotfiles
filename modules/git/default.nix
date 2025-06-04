@@ -1,6 +1,14 @@
 { pkgs, lib, ... }:
 {
   home.packages = with pkgs; [ git-lfs ];
+  programs.ssh = {
+    enable = true; # Ensure programs.ssh is enabled for extraConfig to apply
+    extraConfig = ''
+      Host *
+        UseKeychain yes
+        AddKeysToAgent yes
+    '';
+  };
   programs.git = {
     enable = true;
     delta.enable = true;
@@ -12,7 +20,7 @@
     extraConfig = {
       commit.gpgsign = true;
       gpg.format = "ssh";
-      user.signingKey = "~/.ssh/id_ed25519";
+      gpg.ssh.program = "${pkgs.openssh}/bin/ssh-keygen";
       url."ssh://git@github.com/".insteadOf = "https://github.com/";
       core = {
         editor = "nvim";
