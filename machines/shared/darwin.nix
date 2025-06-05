@@ -27,15 +27,6 @@
     ];
   };
 
-  programs.ssh = {
-    #enable = true; # Ensure programs.ssh is enabled for extraConfig to apply
-    extraConfig = ''
-      Host *
-        UseKeychain yes
-        AddKeysToAgent yes
-    '';
-  };
-
   system = {
     primaryUser = "alexandre.schoenwitz";
     defaults = {
