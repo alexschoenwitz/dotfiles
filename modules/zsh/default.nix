@@ -10,6 +10,10 @@
       source ~/.p10k.zsh
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       eval "$(direnv hook zsh)"
+      load_all_kubeconfigs() {
+          export KUBECONFIG=$(find ~/.kube -name "config*" -type f | tr '\n' ':' | sed 's/:$//')
+      }
+      load_all_kubeconfigs
     '';
     shellAliases = {
       ".." = "cd ..";
