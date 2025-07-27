@@ -8,5 +8,6 @@
     extraPlugins = with pkgs.vimPlugins; [
       omnisharp-extended-lsp-nvim
     ];
+    colorschemes.gruvbox.enable = true;
   };
 }

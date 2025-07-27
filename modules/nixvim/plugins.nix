@@ -128,6 +128,7 @@
         '';
       };
       ts_ls.enable = true;
+      dartls.enable = true;
       nixd.enable = true;
       html.enable = true;
       omnisharp = {
@@ -232,13 +233,5 @@
         tf = [ "terraform_fmt" ];
       };
     };
-  };
-
-  precognition = {
-    enable = true;
-  };
-
-  hardtime = {
-    enable = true;
   };
 }
