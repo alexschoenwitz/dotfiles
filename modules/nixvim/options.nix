@@ -9,6 +9,15 @@
       };
     };
 
+    diagnostic = {
+      settings = {
+        virtual_lines = {
+          current_line = true;
+        };
+        virtual_text = false;
+      };
+    };
+
     opts = {
       termguicolors = lib.mkForce false;
       statusline = " %{mode()} | %f%m%r %=%l:%c %p%% ";
