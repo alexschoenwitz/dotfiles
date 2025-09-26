@@ -5,6 +5,7 @@
     with pkgs.nodePackages_latest;
     [
       _1password-cli
+      aerospace
       argocd
       buf
       cargo
@@ -44,7 +45,6 @@
       bash-language-server
       clang-tools # clangd lsp
       csharpier
-      dotnet-sdk_8
       gofumpt
       gopls
       gotools

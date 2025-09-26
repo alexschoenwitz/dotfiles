@@ -220,6 +220,7 @@
           "gofumpt"
           "goimports"
         ];
+        dart = [ "dart_format" ];
         rust = [ "rustfmt" ];
         typescript = [ "prettierd" ];
         typescriptreact = [ "prettierd" ];

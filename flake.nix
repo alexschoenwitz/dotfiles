@@ -60,6 +60,7 @@
               ];
               home-manager.users."alexandre.schoenwitz" = {
                 imports = [
+                  ./modules/aerospace
                   ./modules/ghostty
                   ./modules/git
                   ./modules/go.nix
@@ -89,6 +90,7 @@
               ];
               home-manager.users."alexandre.schoenwitz" = {
                 imports = [
+                  ./modules/aerospace
                   ./modules/ghostty
                   ./modules/git
                   ./modules/go.nix
