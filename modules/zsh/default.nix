@@ -11,6 +11,9 @@
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       eval "$(direnv hook zsh)"
       export KUBECONFIG=$(find ~/.kube -maxdepth 1 -name "*" -type f | tr '\n' ':' | sed 's/:$//')
+      if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+        exec tmux
+      fi
     '';
     shellAliases = {
       ".." = "cd ..";
