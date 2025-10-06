@@ -55,8 +55,8 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
               home-manager.sharedModules = [
-                nixvim.homeManagerModules.nixvim
-                mac-app-util.homeManagerModules.default
+                nixvim.homeModules.nixvim
+                mac-app-util.homeModules.default
               ];
               home-manager.users."alexandre.schoenwitz" = {
                 imports = [
@@ -85,8 +85,8 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
               home-manager.sharedModules = [
-                nixvim.homeManagerModules.nixvim
-                mac-app-util.homeManagerModules.default
+                nixvim.homeModules.nixvim
+                mac-app-util.homeModules.default
               ];
               home-manager.users."alexandre.schoenwitz" = {
                 imports = [
