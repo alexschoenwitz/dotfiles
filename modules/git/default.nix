@@ -47,7 +47,7 @@
         whitespace = "nowarn";
       };
       help = {
-        autocorrect = 1;
+        autocorrect = "immediate";
       };
       grep = {
         extendRegexp = true;
