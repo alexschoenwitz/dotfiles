@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  home.packages = [
+    pkgs.zsh-autosuggestions
+    pkgs.zsh-powerlevel10k
+  ];
   programs.zsh = {
     enable = true;
     enableCompletion = true;

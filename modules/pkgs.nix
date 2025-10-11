@@ -1,72 +1,54 @@
 { pkgs, ... }:
 {
-  home.packages =
-    with pkgs;
-    with pkgs.nodePackages_latest;
-    [
-      _1password-cli
-      aerospace
-      argocd
-      buf
-      cargo
-      colima
-      curl
-      direnv
-      docker
-      docker-compose
-      evans
-      fzf
-      google-cloud-sdk
-      git
-      gnupg
-      grpcurl
-      grpcui
-      imagemagick
-      jq
-      kubectl
-      lazygit
-      nodejs
-      postgresql_17_jit
-      ripgrep
-      terraform
-      tmux
-      tree
-      websocat
-      zsh-autosuggestions
-      zsh-powerlevel10k
+  home.packages = [
+    pkgs._1password-cli
+    pkgs.aerospace
+    pkgs.colima
+    pkgs.direnv
+    pkgs.docker
+    pkgs.docker-compose
+    pkgs.curl
+    pkgs.fzf
+    pkgs.git
+    pkgs.gnupg
+    pkgs.ripgrep
+    pkgs.tmux
+    pkgs.tree
 
-      # required by snacks.image
-      ghostscript
-      tectonic
-      mermaid-cli
-      fd
+    pkgs.argocd
+    pkgs.buf
+    pkgs.evans
+    pkgs.google-cloud-sdk
+    pkgs.grpcurl
+    pkgs.grpcui
+    pkgs.imagemagick
+    pkgs.jq
+    pkgs.kubectl
+    pkgs.terraform
+    pkgs.websocat
 
-      # treesitter, lsps, formatters, etc
-      bash-language-server
-      clang-tools # clangd lsp
-      csharpier
-      gofumpt
-      gopls
-      gotools
-      lua-language-server
-      nil # nix lsp
-      nixfmt-rfc-style
-      prettier
-      prettierd
-      shellcheck
-      shfmt
-      stylua
-      terraform-ls
-      tflint
-      tree-sitter
-      typescript-language-server
-      yaml-language-server
-      yamllint
+    # required by snacks.image
+    pkgs.ghostscript
+    pkgs.tectonic
+    pkgs.mermaid-cli
+    pkgs.fd
 
-      # Rust tools
-      rustc
-      rustfmt
-      rust-analyzer
-      clippy
-    ];
+    # treesitter, lsps, formatters, etc
+    pkgs.bash-language-server
+    pkgs.clang-tools # clangd lsp
+    pkgs.lua-language-server
+    pkgs.nil # nix lsp
+    pkgs.nixfmt-rfc-style
+    pkgs.prettier
+    pkgs.prettierd
+    pkgs.shellcheck
+    pkgs.shfmt
+    pkgs.stylua
+    pkgs.terraform-ls
+    pkgs.tflint
+    pkgs.tree-sitter
+    pkgs.typescript-language-server
+    pkgs.yaml-language-server
+    pkgs.yamllint
+  ];
 }

@@ -2,12 +2,17 @@
 {
   home.packages = with pkgs; [ git-lfs ];
   programs.ssh = {
-    enable = true; # Ensure programs.ssh is enabled for extraConfig to apply
-    extraConfig = ''
-      Host *
-        UseKeychain yes
-        AddKeysToAgent yes
-    '';
+    enable = true;
+    enableDefaultConfig = false;
+    matchBlocks = {
+      "*" = {
+        extraOptions = {
+          UseKeychain = "yes";
+          AddKeysToAgent = "yes";
+          IdentityFile = "~/.ssh/id_rsa";
+        };
+      };
+    };
   };
   programs.git = {
     enable = true;

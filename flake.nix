@@ -56,14 +56,13 @@
               home-manager.useUserPackages = false;
               home-manager.sharedModules = [
                 nixvim.homeModules.nixvim
-                mac-app-util.homeModules.default
+                mac-app-util.homeManagerModules.default
               ];
               home-manager.users."alexandre.schoenwitz" = {
                 imports = [
                   ./modules/aerospace
                   ./modules/ghostty
                   ./modules/git
-                  ./modules/go.nix
                   ./modules/home.nix
                   ./modules/nixvim
                   ./modules/pkgs.nix
@@ -86,14 +85,13 @@
               home-manager.useUserPackages = false;
               home-manager.sharedModules = [
                 nixvim.homeModules.nixvim
-                mac-app-util.homeModules.default
+                mac-app-util.homeManagerModules.default
               ];
               home-manager.users."alexandre.schoenwitz" = {
                 imports = [
                   ./modules/aerospace
                   ./modules/ghostty
                   ./modules/git
-                  ./modules/go.nix
                   ./modules/home.nix
                   ./modules/nixvim
                   ./modules/pkgs.nix
