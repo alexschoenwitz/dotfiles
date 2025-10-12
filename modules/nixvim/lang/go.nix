@@ -29,21 +29,11 @@
         "-.vscode-test"
         "-node_modules"
       ];
-      semanticTokens = true;
+      semanticTokens = false;
     };
-    onAttach.function = ''
-      if not client.server_capabilities.semanticTokensProvider then
-      local semantic = client.config.capabilities.textDocument.semanticTokens;
-        client.server_capabilities.semanticTokensProvider = {
-          full = true,
-          legend = {
-            tokenTypes = semantic.tokenTypes,
-            tokenModifiers = semantic.tokenModifiers,
-          },
-          range = true,
-        }
-      end
-    '';
   };
-  conform-nvim.settings.formatters_by_ft.go = [ "gofumpt" "goimports" ];
+  conform-nvim.settings.formatters_by_ft.go = [
+    "gofumpt"
+    "goimports"
+  ];
 }

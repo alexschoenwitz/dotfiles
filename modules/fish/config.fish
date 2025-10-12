@@ -18,6 +18,11 @@ else
 	abbr -a lll 'ls -la'
 end
 
+
+if command -v zoxide > /dev/null
+    zoxide init fish --cmd cd | source
+end
+
 # Fish git prompt
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'

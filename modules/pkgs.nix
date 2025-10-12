@@ -14,6 +14,7 @@
     pkgs.ripgrep
     pkgs.tmux
     pkgs.tree
+    pkgs.zoxide
 
     pkgs.argocd
     pkgs.buf
