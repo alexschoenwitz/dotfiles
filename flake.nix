@@ -66,9 +66,9 @@
                   ./modules/home.nix
                   ./modules/nixvim
                   ./modules/pkgs.nix
+                  ./modules/lang.nix
                   ./modules/tmux
                   ./modules/vscode
-                  # ./modules/zsh
                   ./modules/fish
                 ];
               };
@@ -96,9 +96,9 @@
                   ./modules/home.nix
                   ./modules/nixvim
                   ./modules/pkgs.nix
+                  ./modules/lang.nix
                   ./modules/tmux
                   ./modules/vscode
-                  # ./modules/zsh
                   ./modules/fish
                 ];
               };

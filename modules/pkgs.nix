@@ -8,6 +8,7 @@
     pkgs.docker
     pkgs.docker-compose
     pkgs.curl
+    pkgs.eza
     pkgs.fzf
     pkgs.git
     pkgs.gnupg
