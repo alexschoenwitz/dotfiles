@@ -14,9 +14,11 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
+  programs.fish.enable = true;
   users.users."alexandre.schoenwitz" = {
     name = "alexandre.schoenwitz";
     home = "/Users/alexandre.schoenwitz";
+    shell = pkgs.fish;
   };
 
   homebrew = {

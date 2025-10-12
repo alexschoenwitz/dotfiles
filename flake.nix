@@ -68,7 +68,8 @@
                   ./modules/pkgs.nix
                   ./modules/tmux
                   ./modules/vscode
-                  ./modules/zsh
+                  # ./modules/zsh
+                  ./modules/fish
                 ];
               };
             }
@@ -97,7 +98,8 @@
                   ./modules/pkgs.nix
                   ./modules/tmux
                   ./modules/vscode
-                  ./modules/zsh
+                  # ./modules/zsh
+                  ./modules/fish
                 ];
               };
             }
