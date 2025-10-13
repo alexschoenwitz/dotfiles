@@ -1,4 +1,3 @@
-
 if status is-interactive
 	if test -z "$TMUX"; and test -n "$TERM"; and not string match -q -- '*tmux*' "$TERM"
 		if type -q tmux
@@ -18,7 +17,6 @@ else
 	abbr -a lll 'ls -la'
 end
 
-
 if command -v zoxide > /dev/null
     zoxide init fish --cmd cd | source
 end
@@ -29,6 +27,5 @@ set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate ''
 set __fish_git_prompt_showupstream 'none'
 set -g fish_prompt_pwd_dir_length 3
-
 
 set -g fish_greeting

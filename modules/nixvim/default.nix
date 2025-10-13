@@ -12,7 +12,7 @@ let
     (import ./lang/csharp.nix)
     (import ./lang/rust.nix)
   ];
-  mergedPlugins = lib.foldl recursiveMerge {} pluginSets;
+  mergedPlugins = lib.foldl recursiveMerge { } pluginSets;
 in
 {
   imports = [ ./options.nix ];
@@ -21,8 +21,12 @@ in
     plugins = mergedPlugins;
     extraPlugins = with pkgs.vimPlugins; [
       omnisharp-extended-lsp-nvim
+      base16-nvim
     ];
     keymaps = import ./keymaps.nix;
-    colorschemes.gruvbox.enable = true;
+
+    extraConfigLua = ''
+      require('base16-colorscheme').setup('gruvbox-dark-hard')
+    '';
   };
 }

@@ -19,7 +19,7 @@
     };
 
     opts = {
-      termguicolors = lib.mkForce false;
+      termguicolors = lib.mkForce true;
       statusline = " %{mode()} | %f%m%r %=%l:%c %p%% ";
       undofile = true;
       number = true;
