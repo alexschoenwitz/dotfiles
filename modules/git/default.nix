@@ -1,19 +1,7 @@
 { pkgs, lib, ... }:
 {
   home.packages = with pkgs; [ git-lfs ];
-  programs.ssh = {
-    enable = true;
-    enableDefaultConfig = false;
-    matchBlocks = {
-      "*" = {
-        extraOptions = {
-          UseKeychain = "yes";
-          AddKeysToAgent = "yes";
-          IdentityFile = "~/.ssh/id_rsa";
-        };
-      };
-    };
-  };
+  
   programs.git = {
     enable = true;
     delta.enable = true;
