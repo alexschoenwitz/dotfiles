@@ -17,23 +17,10 @@
     pkgs.tree
     pkgs.zoxide
 
-    pkgs.argocd
-    pkgs.buf
-    pkgs.evans
-    pkgs.google-cloud-sdk
     pkgs.grpcurl
     pkgs.grpcui
-    pkgs.imagemagick
     pkgs.jq
-    pkgs.kubectl
-    pkgs.terraform
     pkgs.websocat
-
-    # required by snacks.image
-    pkgs.ghostscript
-    pkgs.tectonic
-    pkgs.mermaid-cli
-    pkgs.fd
 
     # treesitter, lsps, formatters, etc
     pkgs.bash-language-server
@@ -50,7 +37,5 @@
     pkgs.tflint
     pkgs.tree-sitter
     pkgs.typescript-language-server
-    pkgs.yaml-language-server
-    pkgs.yamllint
   ];
 }
