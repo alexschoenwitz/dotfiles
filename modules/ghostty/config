@@ -4,7 +4,7 @@
 #
 clipboard-paste-protection = false
 clipboard-read = allow
-font-family = JetBrains Mono
+font-family = Noto Sans Mono
 mouse-hide-while-typing = true
 scrollback-limit = 1000000
 shell-integration = fish

@@ -43,10 +43,6 @@
         action = "right";
         key = "<C-w>l";
       }
-      {
-        action = "previous";
-        key = "<C-w>\\";
-      }
     ];
   };
   snacks = {
@@ -58,9 +54,6 @@
         settings = {
           which-key = true;
         };
-      };
-      explorer = {
-        enabled = true;
       };
     };
   };

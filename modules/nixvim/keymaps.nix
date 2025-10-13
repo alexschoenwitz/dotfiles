@@ -26,12 +26,6 @@
     options.desc = "Command History";
   }
   {
-    key = "<leader>e";
-    action = "<cmd>lua Snacks.explorer()<cr>";
-    options.desc = "File Explorer";
-  }
-
-  {
     key = "<leader>d";
     action = "<cmd>Trouble diagnostics toggle<cr>";
     options.desc = "Diagnostics";
