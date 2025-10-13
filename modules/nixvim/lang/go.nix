@@ -29,7 +29,6 @@
         "-.vscode-test"
         "-node_modules"
       ];
-      semanticTokens = false;
     };
   };
   conform-nvim.settings.formatters_by_ft.go = [

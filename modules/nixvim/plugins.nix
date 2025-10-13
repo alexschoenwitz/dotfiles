@@ -1,6 +1,21 @@
 {
   render-markdown.enable = true;
-  treesitter.enable = true;
+  treesitter = {
+    enable = true;
+    settings = {
+      auto_install = false;
+      sync_install = false;
+      highlight = {
+        enable = true;
+      };
+      incremental_selection = {
+        enable = true;
+      };
+      indent = {
+        enable = true;
+      };
+    };
+  };
   web-devicons.enable = true;
   which-key.enable = true;
   blink-cmp = {
@@ -66,6 +81,9 @@
   lsp = {
     enable = true;
     inlayHints = true;
+    capabilities = ''
+      capabilities.textDocument.semanticTokens = nil
+    '';
   };
   conform-nvim = {
     enable = true;
