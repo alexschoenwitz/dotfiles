@@ -33,24 +33,9 @@
 
   # Find
   {
-    key = "<leader>fc";
-    action = ''<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath("config") })<cr>'';
-    options.desc = "Find Config File";
-  }
-  {
     key = "<leader>ff";
     action = "<cmd>lua Snacks.picker.files()<cr>";
     options.desc = "Find Files";
-  }
-  {
-    key = "<leader>fg";
-    action = "<cmd>lua Snacks.picker.git_files()<cr>";
-    options.desc = "Find Git Files";
-  }
-  {
-    key = "<leader>fp";
-    action = "<cmd>lua Snacks.picker.projects()<cr>";
-    options.desc = "Projects";
   }
   {
     key = "<leader>fr";
@@ -98,11 +83,6 @@
     key = "<leader>gf";
     action = "<cmd>lua Snacks.picker.git_log_file()<cr>";
     options.desc = "Git Log File";
-  }
-  {
-    key = "<leader>gg";
-    action = "<cmd>lua Snacks.lazygit()<cr>";
-    options.desc = "Lazygit";
   }
 
   # Grep / Search
