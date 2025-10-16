@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   home.username = "alexandre.schoenwitz";
   home.stateVersion = "24.11";

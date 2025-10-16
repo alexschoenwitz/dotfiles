@@ -4,13 +4,14 @@ let
   pluginSets = [
     (import ./plugins.nix)
     (import ./lang/bash.nix)
-    (import ./lang/go.nix)
-    (import ./lang/typescript.nix)
-    (import ./lang/dart.nix)
-    (import ./lang/nix.nix)
-    (import ./lang/html.nix)
     (import ./lang/csharp.nix)
+    (import ./lang/dart.nix)
+    (import ./lang/go.nix)
+    (import ./lang/html.nix)
+    (import ./lang/nix.nix)
+    (import ./lang/python.nix)
     (import ./lang/rust.nix)
+    (import ./lang/typescript.nix)
   ];
   mergedPlugins = lib.foldl recursiveMerge { } pluginSets;
 in

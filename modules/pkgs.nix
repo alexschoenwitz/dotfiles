@@ -31,6 +31,7 @@
     pkgs.nixfmt-rfc-style
     pkgs.prettier
     pkgs.prettierd
+    pkgs.ruff
     pkgs.shellcheck
     pkgs.shfmt
     pkgs.stylua
