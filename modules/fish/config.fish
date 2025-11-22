@@ -1,7 +1,12 @@
 if status is-interactive
+	# List of terminals where tmux should auto-start
+	set -l allowed_terminals ghostty
+
 	if test -z "$TMUX"; and test -n "$TERM"; and not string match -q -- '*tmux*' "$TERM"
-		if type -q tmux
-			exec tmux
+		if contains -- "$TERM_PROGRAM" $allowed_terminals
+			if type -q tmux
+				exec tmux
+			end
 		end
 	end
 end

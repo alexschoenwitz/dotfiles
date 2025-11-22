@@ -68,7 +68,7 @@
                   ./modules/pkgs.nix
                   ./modules/lang.nix
                   ./modules/tmux
-                  # ./modules/vscode
+                  ./modules/vscode
                   ./modules/fish
                   ./modules/ssh.nix
                 ];
@@ -99,7 +99,7 @@
                   ./modules/pkgs.nix
                   ./modules/lang.nix
                   ./modules/tmux
-                  # ./modules/vscode
+                  ./modules/vscode
                   ./modules/fish
                   ./modules/ssh.nix
                 ];

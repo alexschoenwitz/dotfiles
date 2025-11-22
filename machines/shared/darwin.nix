@@ -26,7 +26,7 @@
     casks = [
       "1password"
       "brave-browser"
-      # "visual-studio-code"
+      "visual-studio-code"
     ];
   };
 
