@@ -1,6 +1,11 @@
 [
   # Top Pickers & Explorer
   {
+    key = "<leader>-";
+    action = "<cmd>Oil<cr>";
+    options.desc = "Open file browser";
+  }
+  {
     key = "<leader> ";
     action = "<cmd>lua Snacks.picker.smart()<cr>";
     options.desc = "Smart Find Files";
@@ -92,11 +97,6 @@
     options.desc = "Buffer Lines";
   }
   {
-    key = "<leader>st";
-    action = "<cmd>lua Snacks.picker.todo_comments()<cr>";
-    options.desc = "Todos";
-  }
-  {
     key = "<leader>sB";
     action = "<cmd>lua Snacks.picker.grep_buffers()<cr>";
     options.desc = "Grep Open Buffers";
@@ -156,7 +156,41 @@
   }
   {
     key = "<leader>cr";
-    action = "<cmd>lua vim.lsp.buf.rename()<cr>";
+    action = "<cmd>IncRename ";
     options.desc = "Rename";
+  }
+
+  # Pane splitting
+  {
+    key = "<leader>u";
+    action = "<cmd>split<cr>";
+    options.desc = "Split window horizontally";
+  }
+  {
+    key = "<leader>i";
+    action = "<cmd>vsplit<cr>";
+    options.desc = "Split window vertically";
+  }
+
+  # Pane resizing with smart-splits
+  {
+    key = "<C-Left>";
+    action = "<cmd>lua require('smart-splits').resize_left()<cr>";
+    options.desc = "Resize pane left";
+  }
+  {
+    key = "<C-Down>";
+    action = "<cmd>lua require('smart-splits').resize_down()<cr>";
+    options.desc = "Resize pane down";
+  }
+  {
+    key = "<C-Up>";
+    action = "<cmd>lua require('smart-splits').resize_up()<cr>";
+    options.desc = "Resize pane up";
+  }
+  {
+    key = "<C-Right>";
+    action = "<cmd>lua require('smart-splits').resize_right()<cr>";
+    options.desc = "Resize pane right";
   }
 ]

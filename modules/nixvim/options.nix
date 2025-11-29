@@ -30,7 +30,6 @@
       smartcase = true;
       tabstop = 4;
       shiftwidth = 4;
-      foldcolumn = "4";
       softtabstop = 0;
       expandtab = true;
       smarttab = true;
@@ -39,12 +38,8 @@
       ruler = true;
       gdefault = true;
       scrolloff = 5;
-      showmode = false; # Already have a statusline
+      showmode = false;
       fillchars = {
-        foldopen = "";
-        foldclose = "";
-        fold = " ";
-        foldsep = " ";
         diff = "╱";
         eob = " ";
       };

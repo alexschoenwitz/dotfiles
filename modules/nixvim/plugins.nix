@@ -1,5 +1,22 @@
 {
   render-markdown.enable = true;
+  mini = {
+    enable = true;
+    mockDevIcons = true;
+    modules = {
+      icons = { };
+      surround = { };
+    };
+  };
+  oil = {
+    enable = true;
+    settings = {
+      view_options = {
+        show_hidden = true;
+      };
+      skip_confirm_for_simple_edits = true;
+    };
+  };
   treesitter = {
     enable = true;
     settings = {
@@ -36,9 +53,25 @@
           "fallback"
         ];
       };
+      sources = {
+        default = [ "lsp" "path" "snippets" "buffer" ];
+        cmdline = [ ];
+      };
     };
   };
+  nvim-autopairs = {
+    enable = true;
+    settings = {
+      check_ts = true;
+    };
+  };
+  inc-rename = {
+    enable = true;
+  };
   trouble.enable = true;
+  smart-splits = {
+    enable = true;
+  };
   tmux-navigator = {
     enable = true;
     keymaps = [

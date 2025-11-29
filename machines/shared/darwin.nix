@@ -107,6 +107,19 @@
         "com.apple.dock" = {
           size-immutable = true;
         };
+        "com.apple.symbolichotkeys" = {
+          AppleSymbolicHotKeys = {
+            "32" = { enabled = false; }; # Mission Control
+            "33" = { enabled = false; }; # Show Desktop (F11)
+            "34" = { enabled = false; }; # Application windows
+            "35" = { enabled = false; }; # Mission Control - Move left a space (Ctrl+Left)
+            "36" = { enabled = false; }; # Mission Control - Move right a space (Ctrl+Right)
+            "37" = { enabled = false; }; # Mission Control - Switch to Desktop 1
+            "79" = { enabled = false; }; # Mission Control - Move up (Ctrl+Up)
+            "80" = { enabled = false; }; # Mission Control - Move down (Ctrl+Down)
+            "81" = { enabled = false; }; # Application windows (Ctrl+Down)
+          };
+        };
       };
     };
   };
