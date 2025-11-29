@@ -39,7 +39,7 @@
       nixpkgsFor = forAllSystems (
         system:
         import nixpkgs {
-          inherit system;
+          system = system;
         }
       );
 
@@ -50,7 +50,7 @@
         home = darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           specialArgs = {
-            inherit user;
+            user = user;
           };
           modules = [
             ./machines/home
@@ -64,7 +64,7 @@
                 mac-app-util.homeManagerModules.default
               ];
               home-manager.extraSpecialArgs = {
-                inherit user;
+                user = user;
               };
             }
           ];
@@ -72,7 +72,7 @@
         work = darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           specialArgs = {
-            inherit user;
+            user = user;
           };
           modules = [
             ./machines/work
@@ -86,7 +86,7 @@
                 mac-app-util.homeManagerModules.default
               ];
               home-manager.extraSpecialArgs = {
-                inherit user;
+                user = user;
               };
             }
           ];
