@@ -1,1 +1,9 @@
+# Nix build results
 result
+result-*
+
+# direnv
+.direnv/
+.envrc
+
+CLAUDE.md

@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{ config, lib, ... }:
+let
+  sshKeyPath = config.home.sessionVariables.SSH_KEY_PATH or "~/.ssh/id_rsa";
+  sshKeyName = lib.last (lib.splitString "/" sshKeyPath);
+  sshKeyFullPath = "${config.home.homeDirectory}/.ssh/${sshKeyName}";
+in
 {
   programs.ssh = {
     enable = true;
@@ -8,7 +13,7 @@
         extraOptions = {
           UseKeychain = "yes";
           AddKeysToAgent = "yes";
-          IdentityFile = "~/.ssh/id_rsa";
+          IdentityFile = sshKeyPath;
         };
       };
     };
@@ -25,7 +30,7 @@
       ProgramArguments = [
         "/bin/bash"
         "-c"
-        "if ! /usr/bin/ssh-add -l | grep -q 'id_rsa'; then /usr/bin/ssh-add --apple-use-keychain /Users/alexandre.schoenwitz/.ssh/id_rsa; fi"
+        "if ! /usr/bin/ssh-add -l | grep -q '${sshKeyName}'; then /usr/bin/ssh-add --apple-use-keychain ${sshKeyFullPath}; fi"
       ];
 
       StandardOutPath = "/dev/null";

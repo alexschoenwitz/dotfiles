@@ -1,10 +1,17 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 {
   imports = [ ../shared/darwin.nix ];
-  home-manager.users."alexandre.schoenwitz".programs.git.userEmail = "alexandre.schoenwitz@gmail.com";
-  home-manager.users."alexandre.schoenwitz".programs.git.extraConfig.user.signingKey =
-    "~/.ssh/id_ed25519";
-  home-manager.users."alexandre.schoenwitz".home.packages = [
-    pkgs.claude-code
+
+  homebrew.casks = [
+    "brave-browser"
+    "visual-studio-code"
   ];
+
+  home-manager.users.${user.username} = {
+    imports = [ ../../modules/default-user.nix ];
+    home.sessionVariables.SSH_KEY_PATH = "~/.ssh/id_ed25519";
+    programs.git.userEmail = "alexandre.schoenwitz@gmail.com";
+    programs.git.extraConfig.user.signingKey = "~/.ssh/id_ed25519";
+    home.packages = [ pkgs.claude-code ];
+  };
 }

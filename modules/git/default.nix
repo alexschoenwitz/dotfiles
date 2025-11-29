@@ -1,11 +1,11 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, user, ... }:
 {
   home.packages = with pkgs; [ git-lfs ];
-  
+
   programs.git = {
     enable = true;
     delta.enable = true;
-    userName = "Alexandre Schönwitz";
+    userName = user.fullName;
     # userEmail is set per machine
     lfs = {
       enable = true;

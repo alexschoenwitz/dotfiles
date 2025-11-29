@@ -5,7 +5,6 @@
     pkgs.aerospace
     pkgs.bat
     pkgs.colima
-    pkgs.direnv
     pkgs.docker
     pkgs.docker-compose
     pkgs.curl
@@ -23,21 +22,10 @@
     pkgs.jq
     pkgs.websocat
 
-    # treesitter, lsps, formatters, etc
-    pkgs.bash-language-server
-    pkgs.clang-tools # clangd lsp
-    pkgs.lua-language-server
-    pkgs.nil # nix lsp
-    pkgs.nixfmt-rfc-style
-    pkgs.prettier
-    pkgs.prettierd
-    pkgs.ruff
-    pkgs.shellcheck
-    pkgs.shfmt
-    pkgs.stylua
+    # General development tools
+    pkgs.clang-tools # clangd lsp for C/C++
     pkgs.terraform-ls
     pkgs.tflint
     pkgs.tree-sitter
-    pkgs.typescript-language-server
   ];
 }

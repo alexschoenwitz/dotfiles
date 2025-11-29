@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 {
   nixpkgs.config = {
     allowUnfree = true;
@@ -6,7 +6,7 @@
   nix.package = pkgs.nix;
   nix.settings.trusted-users = [
     "root"
-    "alexandre.schoenwitz"
+    user.username
   ];
   # do not try to manage nix installation:
   nix.enable = false;
@@ -15,23 +15,19 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   programs.fish.enable = true;
-  users.users."alexandre.schoenwitz" = {
-    name = "alexandre.schoenwitz";
-    home = "/Users/alexandre.schoenwitz";
+  users.users.${user.username} = {
+    name = user.username;
+    home = user.homeDirectory;
     shell = pkgs.fish;
   };
 
   homebrew = {
     enable = true;
-    casks = [
-      "1password"
-      "brave-browser"
-      "visual-studio-code"
-    ];
+    casks = [ "1password" ];
   };
 
   system = {
-    primaryUser = "alexandre.schoenwitz";
+    primaryUser = user.username;
     defaults = {
       dock = {
         autohide = true;

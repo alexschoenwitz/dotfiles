@@ -1,6 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 {
-  home.username = "alexandre.schoenwitz";
+  home.username = user.username;
+  home.homeDirectory = user.homeDirectory;
   home.stateVersion = "24.11";
 
   # Let Home Manager install and manage itself.

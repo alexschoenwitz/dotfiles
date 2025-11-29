@@ -42,11 +42,16 @@
           inherit system;
         }
       );
+
+      user = import ./lib/user.nix;
     in
     {
       darwinConfigurations = {
         home = darwin.lib.darwinSystem {
           system = "aarch64-darwin";
+          specialArgs = {
+            inherit user;
+          };
           modules = [
             ./machines/home
             mac-app-util.darwinModules.default
@@ -58,26 +63,17 @@
                 nixvim.homeModules.nixvim
                 mac-app-util.homeManagerModules.default
               ];
-              home-manager.users."alexandre.schoenwitz" = {
-                imports = [
-                  ./modules/aerospace
-                  ./modules/ghostty
-                  ./modules/git
-                  ./modules/home.nix
-                  ./modules/nixvim
-                  ./modules/pkgs.nix
-                  ./modules/lang.nix
-                  ./modules/tmux
-                  ./modules/vscode
-                  ./modules/fish
-                  ./modules/ssh.nix
-                ];
+              home-manager.extraSpecialArgs = {
+                inherit user;
               };
             }
           ];
         };
         work = darwin.lib.darwinSystem {
           system = "aarch64-darwin";
+          specialArgs = {
+            inherit user;
+          };
           modules = [
             ./machines/work
             mac-app-util.darwinModules.default
@@ -89,25 +85,29 @@
                 nixvim.homeModules.nixvim
                 mac-app-util.homeManagerModules.default
               ];
-              home-manager.users."alexandre.schoenwitz" = {
-                imports = [
-                  ./modules/aerospace
-                  ./modules/ghostty
-                  ./modules/git
-                  ./modules/home.nix
-                  ./modules/nixvim
-                  ./modules/pkgs.nix
-                  ./modules/lang.nix
-                  ./modules/tmux
-                  ./modules/vscode
-                  ./modules/fish
-                  ./modules/ssh.nix
-                ];
+              home-manager.extraSpecialArgs = {
+                inherit user;
               };
             }
           ];
         };
       };
+
+      formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt-rfc-style);
+
+      checks = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in
+        {
+          format-check = pkgs.runCommand "format-check" { buildInputs = [ pkgs.nixfmt-rfc-style ]; } ''
+            cd ${./.}
+            nixfmt --check .
+            touch $out
+          '';
+        }
+      );
 
       devShells = forAllSystems (
         system:
@@ -131,8 +131,22 @@
                   sudo nixos-rebuild switch --flake .#
                 fi
                 if test $(uname -s) == "Darwin"; then
-                  nix build "./#darwinConfigurations.$(hostname | cut -f1 -d'.').system" 
-                  sudo ./result/sw/bin/darwin-rebuild switch --flake . 
+                  nix build "./#darwinConfigurations.$(hostname | cut -f1 -d'.').system"
+                  sudo ./result/sw/bin/darwin-rebuild switch --flake .
+                fi
+              '')
+              (writeScriptBin "dot-check" ''
+                echo "Checking flake..."
+                nix flake check
+                echo ""
+                echo "Validating configuration..."
+                MACHINE=$(hostname | cut -f1 -d'.')
+                if nix eval --json "./#darwinConfigurations.$MACHINE.config.system.stateVersion" 2>/dev/null; then
+                  echo "✓ Configuration for '$MACHINE' is valid"
+                else
+                  echo "✗ Configuration for '$MACHINE' not found"
+                  echo "Available configurations: home, work"
+                  exit 1
                 fi
               '')
             ];
