@@ -11,10 +11,6 @@ if status is-interactive
 	end
 end
 
-if command -v bat > /dev/null
-	abbr -a cat 'bat'
-end
-
 if command -v eza > /dev/null
 	abbr -a l 'eza'
 	abbr -a ls 'eza'

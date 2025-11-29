@@ -3,7 +3,6 @@
   home.packages = [
     pkgs._1password-cli
     pkgs.aerospace
-    pkgs.bat
     pkgs.colima
     pkgs.docker
     pkgs.docker-compose
