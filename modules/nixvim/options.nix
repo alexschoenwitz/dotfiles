@@ -23,7 +23,7 @@
       statusline = " %{mode()} | %f%m%r %=%l:%c %p%% ";
       undofile = true;
       number = true;
-      relativenumber = true;
+      relativenumber = false;
       statuscolumn = "%s %l %=%r ";
       signcolumn = "yes";
       ignorecase = true;

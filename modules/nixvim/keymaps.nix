@@ -1,8 +1,8 @@
 [
   # Top Pickers & Explorer
   {
-    key = "<leader>-";
-    action = "<cmd>Oil<cr>";
+    key = "<leader>e";
+    action = "<cmd>lua Snacks.explorer()<cr>";
     options.desc = "Open file browser";
   }
   {
@@ -61,8 +61,8 @@
   }
   {
     key = "<leader>gB";
-    action = "<cmd>lua Snacks.git.blame_line()<cr>";
-    options.desc = "Git Blame Line";
+    action = "<cmd>Gitsigns blame<cr>";
+    options.desc = "Git Blame File";
   }
   {
     key = "<leader>gL";

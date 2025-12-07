@@ -5,6 +5,7 @@
 clipboard-paste-protection = false
 clipboard-read = allow
 font-family = Noto Sans Mono
+font-size = 18
 mouse-hide-while-typing = true
 scrollback-limit = 1000000
 shell-integration = fish

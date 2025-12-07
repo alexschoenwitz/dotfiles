@@ -1,4 +1,9 @@
-{ pkgs, lib, user, ... }:
+{
+  pkgs,
+  lib,
+  user,
+  ...
+}:
 {
   home.packages = with pkgs; [ git-lfs ];
 
@@ -15,12 +20,19 @@
       gpg.format = "ssh";
       gpg.ssh.program = "${pkgs.openssh}/bin/ssh-keygen";
       url."ssh://git@github.com/".insteadOf = "https://github.com/";
-      core = {
-        editor = "nvim";
-        compression = -1;
-        autocrlf = "input";
-        whitespace = "trailing-space,space-before-tab";
-        precomposeunicode = true;
+      advice = {
+        addEmptyPathspec = false;
+      };
+      apply = {
+        whitespace = "nowarn";
+      };
+      blame = {
+        coloring = "repeatedLines";
+        markUnblamables = true;
+        markIgnoredLiens = true;
+      };
+      branch = {
+        sort = "-committerdate";
       };
       color = {
         diff = "auto";
@@ -28,18 +40,37 @@
         branch = "auto";
         ui = true;
       };
-      advice = {
-        addEmptyPathspec = false;
-      };
-      apply = {
-        whitespace = "nowarn";
+      core = {
+        editor = "nvim";
+        compression = -1;
+        autocrlf = "input";
+        whitespace = "trailing-space,space-before-tab";
+        precomposeunicode = true;
       };
       help = {
         autocorrect = "immediate";
       };
+      fetch = {
+        prune = true;
+        pruneTags = true;
+        output = "compact";
+        parallel = 0;
+      };
+      format = {
+        signOff = true;
+      };
       grep = {
         extendRegexp = true;
         lineNumber = true;
+      };
+      init = {
+        defaultBranch = "main";
+      };
+      log = {
+        showSignature = false;
+      };
+      pull = {
+        ff = "only";
       };
       push = {
         autoSetupRemote = true;
@@ -48,20 +79,8 @@
       submodule = {
         fetchJobs = 4;
       };
-      log = {
-        showSignature = false;
-      };
-      format = {
-        signOff = true;
-      };
       rerere = {
         enabled = true;
-      };
-      pull = {
-        ff = "only";
-      };
-      init = {
-        defaultBranch = "main";
       };
     };
     ignores = lib.splitString "\n" (builtins.readFile ./gitignore_global);

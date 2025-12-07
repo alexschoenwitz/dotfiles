@@ -8,15 +8,6 @@
       surround = { };
     };
   };
-  oil = {
-    enable = true;
-    settings = {
-      view_options = {
-        show_hidden = true;
-      };
-      skip_confirm_for_simple_edits = true;
-    };
-  };
   treesitter = {
     enable = true;
     settings = {
@@ -54,7 +45,12 @@
         ];
       };
       sources = {
-        default = [ "lsp" "path" "snippets" "buffer" ];
+        default = [
+          "lsp"
+          "path"
+          "snippets"
+          "buffer"
+        ];
         cmdline = [ ];
       };
     };
@@ -96,6 +92,9 @@
   snacks = {
     enable = true;
     settings = {
+      explorer = {
+        enabled = true;
+      };
       picker.enabled = true;
       toggle = {
         enabled = true;
