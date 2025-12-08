@@ -17,11 +17,6 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    mac-app-util = {
-      url = "github:hraban/mac-app-util/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -30,7 +25,6 @@
       home-manager,
       nixpkgs,
       nixvim,
-      mac-app-util,
       ...
     }:
     let
@@ -54,14 +48,12 @@
           };
           modules = [
             ./machines/home
-            mac-app-util.darwinModules.default
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
               home-manager.sharedModules = [
                 nixvim.homeModules.nixvim
-                mac-app-util.homeManagerModules.default
               ];
               home-manager.extraSpecialArgs = {
                 user = user;
@@ -76,14 +68,12 @@
           };
           modules = [
             ./machines/work
-            mac-app-util.darwinModules.default
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
               home-manager.sharedModules = [
                 nixvim.homeModules.nixvim
-                mac-app-util.homeManagerModules.default
               ];
               home-manager.extraSpecialArgs = {
                 user = user;

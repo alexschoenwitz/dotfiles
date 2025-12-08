@@ -7,15 +7,18 @@
 {
   home.packages = with pkgs; [ git-lfs ];
 
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
   programs.git = {
     enable = true;
-    delta.enable = true;
-    userName = user.fullName;
     # userEmail is set per machine
     lfs = {
       enable = true;
     };
-    extraConfig = {
+    settings = {
+      user.name = user.fullName;
       commit.gpgsign = true;
       gpg.format = "ssh";
       gpg.ssh.program = "${pkgs.openssh}/bin/ssh-keygen";
