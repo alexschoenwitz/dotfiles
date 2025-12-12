@@ -2,7 +2,7 @@
 {
   programs.tmux = {
     enable = true;
-    shell = "${pkgs.fish}/bin/fish";
+    shell = "${pkgs.bash}/bin/bash";
     terminal = "xterm-ghostty";
     historyLimit = 100000;
     extraConfig = builtins.readFile ./tmux.conf;

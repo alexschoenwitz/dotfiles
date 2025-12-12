@@ -1,0 +1,48 @@
+# Auto-start tmux in allowed terminals
+allowed_terminals="ghostty"
+if [[ -z "$TMUX" && -n "$TERM" && "$TERM" != *tmux* ]]; then
+    for term in $allowed_terminals; do
+        if [[ "$TERM_PROGRAM" == "$term" ]]; then
+            if command -v tmux &> /dev/null; then
+                exec tmux
+            fi
+        fi
+    done
+fi
+
+# Aliases for eza/ls
+if command -v eza &> /dev/null; then
+    alias l='eza'
+    alias ls='eza'
+    alias ll='eza -l'
+    alias lll='eza -la'
+else
+    alias l='ls'
+    alias ll='ls -l'
+    alias lll='ls -la'
+fi
+
+# Zoxide and fzf are configured via home-manager (programs.zoxide, programs.fzf)
+# This ensures they initialize at the correct point in the shell startup
+
+# Git prompt
+if [[ -f /run/current-system/sw/share/bash-completion/completions/git-prompt.sh ]]; then
+    source /run/current-system/sw/share/bash-completion/completions/git-prompt.sh
+elif [[ -f /etc/bash_completion.d/git-prompt ]]; then
+    source /etc/bash_completion.d/git-prompt
+elif [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
+    source /usr/share/git-core/contrib/completion/git-prompt.sh
+fi
+
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+
+# Prompt: shortened path + git info
+__prompt_command() {
+    local git_info=""
+    if command -v __git_ps1 &> /dev/null; then
+        git_info=$(__git_ps1 " (%s)")
+    fi
+    PS1="\w${git_info} \$ "
+}
+PROMPT_COMMAND=__prompt_command

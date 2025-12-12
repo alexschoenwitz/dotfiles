@@ -15,6 +15,7 @@
     ./tmux
     ./vscode
     ./fish
+    ./bash
     ./ssh.nix
   ];
 }
