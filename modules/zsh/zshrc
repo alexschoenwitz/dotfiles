@@ -1,0 +1,56 @@
+export EDITOR=nvim
+
+# Shell options
+setopt AUTO_CD           # Type directory name to cd into it
+setopt CORRECT           # Autocorrect typos in commands
+setopt CORRECT_ALL       # Autocorrect arguments too
+setopt GLOB_STAR_SHORT   # Enable ** recursive glob
+setopt EXTENDED_GLOB     # Extended globbing
+
+# Auto-start tmux in Ghostty
+if [[ -z "$TMUX" && "$TERM_PROGRAM" == "ghostty" ]]; then
+    exec tmux new-session -A -s main
+fi
+
+# Aliases for eza/ls
+if (( $+commands[eza] )); then
+    alias l='eza'
+    alias ls='eza'
+    alias ll='eza -l'
+    alias lll='eza -la'
+else
+    alias l='ls'
+    alias ll='ls -l'
+    alias lll='ls -la'
+fi
+
+# Zoxide and fzf are configured via home-manager (programs.zoxide, programs.fzf)
+# This ensures they initialize at the correct point in the shell startup
+
+# Git prompt via vcs_info
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats ' (%b)'
+
+setopt PROMPT_SUBST
+PROMPT='%3~${vcs_info_msg_0_} %# '
+
+# Open file:line from command output in nvim
+# Usage: make test 2>&1 | vf
+# Supports file.ext:line and file.ext(line,col) formats
+vf() {
+    if [[ -t 0 ]]; then
+        echo "Usage: command 2>&1 | vf"
+        return 1
+    fi
+    local selection file line tmpfile
+    tmpfile=$(mktemp)
+    tee "$tmpfile"
+    selection=$(grep -oE '[^ "]+\.[a-zA-Z]+[:\(][0-9]+' "$tmpfile" | sed 's/(/:/' | fzf --height 40%)
+    rm -f "$tmpfile"
+    if [[ -n "$selection" ]]; then
+        file="${selection%%:*}"
+        line="${selection##*:}"
+        nvim "+$line" "$file"
+    fi
+}

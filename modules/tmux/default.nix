@@ -2,7 +2,7 @@
 {
   programs.tmux = {
     enable = true;
-    shell = "${pkgs.bash}/bin/bash";
+    shell = "${pkgs.zsh}/bin/zsh";
     terminal = "xterm-ghostty";
     historyLimit = 100000;
     extraConfig = builtins.readFile ./tmux.conf;

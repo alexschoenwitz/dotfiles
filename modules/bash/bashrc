@@ -1,3 +1,15 @@
+export EDITOR=nvim
+PROMPT_DIRTRIM=3
+
+# Shell options
+shopt -s autocd       # Type directory name to cd into it
+shopt -s cdspell      # Autocorrect typos in cd
+shopt -s dirspell     # Autocorrect directory names in completion
+shopt -s histappend   # Append to history, don't overwrite
+shopt -s cmdhist      # Save multi-line commands as one entry
+shopt -s globstar     # Enable ** recursive glob
+shopt -s checkwinsize # Update LINES/COLUMNS after commands
+
 # Auto-start tmux in allowed terminals
 allowed_terminals="ghostty"
 if [[ -z "$TMUX" && -n "$TERM" && "$TERM" != *tmux* ]]; then
@@ -46,3 +58,23 @@ __prompt_command() {
     PS1="\w${git_info} \$ "
 }
 PROMPT_COMMAND=__prompt_command
+
+# Open file:line from command output in nvim
+# Usage: make test 2>&1 | vf
+# Supports file.ext:line and file.ext(line,col) formats
+vf() {
+    if [[ -t 0 ]]; then
+        echo "Usage: command 2>&1 | vf"
+        return 1
+    fi
+    local selection file line tmpfile
+    tmpfile=$(mktemp)
+    tee "$tmpfile"
+    selection=$(grep -oE '[^ "]+\.[a-zA-Z]+[:\(][0-9]+' "$tmpfile" | sed 's/(/:/' | fzf --height 40%)
+    rm -f "$tmpfile"
+    if [[ -n "$selection" ]]; then
+        file="${selection%%:*}"
+        line="${selection##*:}"
+        nvim "+$line" "$file"
+    fi
+}
