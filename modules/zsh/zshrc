@@ -32,13 +32,17 @@ fi
 # Zoxide and fzf are configured via home-manager (programs.zoxide, programs.fzf)
 # This ensures they initialize at the correct point in the shell startup
 
-# Git prompt via vcs_info
-autoload -Uz vcs_info
-precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats ' (%b)'
+# Fast git prompt (reads .git/HEAD directly, no fork)
+_git_branch() {
+  local git_dir head
+  git_dir="${$(git rev-parse --git-dir 2>/dev/null):-}"
+  [[ -z "$git_dir" ]] && return
+  head=$(<"$git_dir/HEAD")
+  [[ "$head" == ref:* ]] && echo " (${head#ref: refs/heads/})" || echo " (${head:0:7})"
+}
 
 setopt PROMPT_SUBST
-PROMPT='%3~${vcs_info_msg_0_} %# '
+PROMPT='%3~$(_git_branch) %# '
 
 # Open file:line from command output in nvim
 # Usage: make test 2>&1 | vf
