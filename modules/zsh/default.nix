@@ -5,6 +5,22 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    plugins = [
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+        file = "share/fzf-tab/fzf-tab.plugin.zsh";
+      }
+      {
+        name = "zsh-completion-sync";
+        src = pkgs.fetchFromGitHub {
+          owner = "BronzeDeer";
+          repo = "zsh-completion-sync";
+          rev = "master";
+          hash = "sha256-nTxeSUlYdl25MFZoLtpYTYq661iaik1RMj21ClOMY3c=";
+        };
+      }
+    ];
 
     history = {
       size = 10000;
@@ -15,7 +31,7 @@
       share = true;
     };
 
-    initExtra = builtins.readFile ./zshrc;
+    initContent = builtins.readFile ./zshrc;
   };
 
   programs.zoxide = {
