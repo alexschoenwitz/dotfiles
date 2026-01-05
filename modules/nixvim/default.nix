@@ -27,7 +27,7 @@ in
     keymaps = import ./keymaps.nix;
 
     extraConfigLua = ''
-      require('base16-colorscheme').setup('gruvbox-dark-hard')
+      require('base16-colorscheme').setup('gruvbox-dark-medium')
     '';
   };
 }

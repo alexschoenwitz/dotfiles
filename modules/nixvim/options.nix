@@ -7,6 +7,10 @@
       StatusLine = {
         link = "StatusLineNC";
       };
+      Comment = {
+        fg = "#a89984"; # gruvbox fg4 - brighter grey
+        italic = true;
+      };
     };
 
     diagnostic = {
