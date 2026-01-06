@@ -121,7 +121,8 @@
     enable = true;
     settings = {
       format_on_save = {
-        timeoutMs = 2000;
+        lsp_format = "fallback";
+        timeout_ms = 2000;
       };
     };
   };
