@@ -10,3 +10,7 @@ nix repl --expr "builtins.getFlake \"$PWD\""
 echo /Users/alexandre.schoenwitz/.nix-profile/bin/fish | sudo tee -a /etc/shells
 chsh -s /Users/alexandre.schoenwitz/.nix-profile/bin/fish
 ```
+
+sudo scutil --set ComputerName "home"
+sudo scutil --set LocalHostName "home"
+sudo scutil --set HostName "home"
