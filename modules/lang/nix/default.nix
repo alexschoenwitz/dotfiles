@@ -2,6 +2,6 @@
 {
   home.packages = [
     pkgs.nil
-    pkgs.nixfmt-rfc-style
+    pkgs.nixfmt
   ];
 }

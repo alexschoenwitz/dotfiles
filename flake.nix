@@ -83,7 +83,7 @@
         };
       };
 
-      formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt-rfc-style);
+      formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt);
 
       checks = forAllSystems (
         system:
@@ -91,7 +91,7 @@
           pkgs = nixpkgsFor.${system};
         in
         {
-          format-check = pkgs.runCommand "format-check" { buildInputs = [ pkgs.nixfmt-rfc-style ]; } ''
+          format-check = pkgs.runCommand "format-check" { buildInputs = [ pkgs.nixfmt ]; } ''
             cd ${./.}
             nixfmt --check .
             touch $out
