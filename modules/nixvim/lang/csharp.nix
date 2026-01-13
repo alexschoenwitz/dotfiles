@@ -71,6 +71,4 @@
         )
       '';
   };
-  # Use LSP formatter (OmniSharp) which respects .editorconfig and StyleCop
-  # conform-nvim.settings.formatters_by_ft.cs = [ "csharpier" ];
 }
