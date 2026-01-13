@@ -2,12 +2,12 @@
   lsp.servers.omnisharp = {
     enable = true;
     settings = {
-      formattingOptions = {
-        enableEditorConfigSupport = true;
-        organizeImports = true;
+      FormattingOptions = {
+        EnableEditorConfigSupport = true;
+        OrganizeImports = true;
       };
-      roslynExtensionsOptions = {
-        enableAnalyzersSupport = true;
+      MsBuild = {
+        LoadProjectsOnDemand = true;
       };
     };
     onAttach.function =
@@ -71,5 +71,6 @@
         )
       '';
   };
-  conform-nvim.settings.formatters_by_ft.cs = [ "csharpier" ];
+  # Use LSP formatter (OmniSharp) which respects .editorconfig and StyleCop
+  # conform-nvim.settings.formatters_by_ft.cs = [ "csharpier" ];
 }
