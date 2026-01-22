@@ -156,7 +156,7 @@
   }
   {
     key = "<leader>cr";
-    action = "<cmd>IncRename ";
+    action = "<cmd>lua vim.lsp.buf.rename()<cr>";
     options.desc = "Rename";
   }
 

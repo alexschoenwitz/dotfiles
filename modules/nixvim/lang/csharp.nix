@@ -1,6 +1,16 @@
 {
   lsp.servers.omnisharp = {
     enable = true;
+    extraOptions = {
+      cmd = [
+        "omnisharp"
+        "-z"
+        "DotNet:enablePackageRestore=false"
+        "--encoding"
+        "utf-8"
+        "--languageserver"
+      ];
+    };
     settings = {
       FormattingOptions = {
         EnableEditorConfigSupport = true;

@@ -43,6 +43,14 @@
           "select_prev"
           "fallback"
         ];
+        "<C-j>" = [
+          "select_next"
+          "fallback"
+        ];
+        "<C-k>" = [
+          "select_prev"
+          "fallback"
+        ];
       };
       sources = {
         default = [
@@ -94,6 +102,7 @@
     settings = {
       explorer = {
         enabled = true;
+        cwd = "vim.uv.cwd()";
       };
       picker.enabled = true;
       toggle = {
