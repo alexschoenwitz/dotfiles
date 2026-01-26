@@ -108,6 +108,7 @@
           default = pkgs.mkShellNoCC {
             buildInputs = with pkgs; [
               (writeScriptBin "dot-clean" ''
+                sudo nix-env --delete-generations +5 --profile /nix/var/nix/profiles/system
                 nix-collect-garbage -d --delete-older-than 30d
               '')
               (writeScriptBin "dot-sync" ''

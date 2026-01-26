@@ -4,12 +4,24 @@
     allowUnfree = true;
   };
   nix.package = pkgs.nix;
-  nix.settings.trusted-users = [
-    "root"
-    user.username
-  ];
-  # do not try to manage nix installation:
-  nix.enable = false;
+  nix.settings = {
+    trusted-users = [
+      "root"
+      user.username
+    ];
+    experimental-features = [ "nix-command" "flakes" ];
+  };
+
+  nix.gc = {
+    automatic = true;
+    interval = { Weekday = 0; Hour = 3; Minute = 0; };
+    options = "--delete-older-than 30d";
+  };
+
+  nix.optimise = {
+    automatic = true;
+    interval = { Weekday = 0; Hour = 4; Minute = 0; };
+  };
   system.stateVersion = 5;
 
   security.pam.services.sudo_local.touchIdAuth = true;

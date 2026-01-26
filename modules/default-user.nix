@@ -5,6 +5,7 @@
 {
   imports = [
     ./aerospace
+    ./colima.nix
     ./direnv.nix
     ./ghostty
     ./git
