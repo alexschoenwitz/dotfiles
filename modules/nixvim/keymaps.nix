@@ -17,11 +17,6 @@
   }
   {
     key = "<leader>/";
-    action = "<cmd>lua Snacks.picker.git_grep()<cr>";
-    options.desc = "Git Grep";
-  }
-  {
-    key = "<leader>.";
     action = "<cmd>lua Snacks.picker.grep()<cr>";
     options.desc = "Grep";
   }
