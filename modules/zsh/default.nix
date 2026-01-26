@@ -22,6 +22,19 @@
       }
     ];
 
+    setOptions = [
+      "EXTENDED_HISTORY"
+      "RM_STAR_WAIT"
+      "AUTO_CD"
+      "GLOB_STAR_SHORT"
+      "EXTENDED_GLOB"
+      "EXTENDED_GLOB"
+      "AUTO_PUSHD"
+      "PUSHD_MINUS"
+      "PUSHD_IGNORE_DUPS"
+      "PUSHD_SILENT"
+    ];
+
     history = {
       size = 10000;
       save = 10000;

@@ -5,12 +5,6 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'    # Case insensitive 
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"      # Colored completions
 zstyle ':fzf-tab:*' fzf-flags --height=50%                   # fzf-tab window height
 
-# Shell options
-setopt AUTO_CD           # Type directory name to cd into it
-setopt CORRECT           # Autocorrect typos in commands
-setopt CORRECT_ALL       # Autocorrect arguments too
-setopt GLOB_STAR_SHORT   # Enable ** recursive glob
-setopt EXTENDED_GLOB     # Extended globbing
 
 # Auto-start tmux in Ghostty
 if [[ -z "$TMUX" && "$TERM_PROGRAM" == "ghostty" ]]; then
