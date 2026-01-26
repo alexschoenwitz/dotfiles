@@ -1,13 +1,23 @@
 {
   lsp.servers.omnisharp = {
     enable = true;
+    extraOptions = {
+      cmd = [
+        "omnisharp"
+        "-z"
+        "DotNet:enablePackageRestore=false"
+        "--encoding"
+        "utf-8"
+        "--languageserver"
+      ];
+    };
     settings = {
-      formattingOptions = {
-        enableEditorConfigSupport = true;
-        organizeImports = true;
+      FormattingOptions = {
+        EnableEditorConfigSupport = true;
+        OrganizeImports = true;
       };
-      roslynExtensionsOptions = {
-        enableAnalyzersSupport = true;
+      MsBuild = {
+        LoadProjectsOnDemand = true;
       };
     };
     onAttach.function =
@@ -71,5 +81,4 @@
         )
       '';
   };
-  conform-nvim.settings.formatters_by_ft.cs = [ "csharpier" ];
 }

@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = [
-    pkgs.csharpier
+    pkgs.omnisharp-roslyn
   ];
 }

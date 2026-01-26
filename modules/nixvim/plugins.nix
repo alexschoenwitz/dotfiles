@@ -43,6 +43,14 @@
           "select_prev"
           "fallback"
         ];
+        "<C-j>" = [
+          "select_next"
+          "fallback"
+        ];
+        "<C-k>" = [
+          "select_prev"
+          "fallback"
+        ];
       };
       sources = {
         default = [
@@ -94,8 +102,34 @@
     settings = {
       explorer = {
         enabled = true;
+        cwd = "vim.uv.cwd()";
       };
-      picker.enabled = true;
+      picker = {
+        enabled = true;
+        layout = {
+          preset = "ivy";
+        };
+        win = {
+          preview = {
+            wo = {
+              number = false;
+              relativenumber = false;
+            };
+          };
+        };
+        formatters = {
+          file = {
+            filename_first = true;
+            truncate = "left";
+            min_width = 40;
+          };
+        };
+        sources = {
+          grep = {
+            cmd = "rg";
+          };
+        };
+      };
       toggle = {
         enabled = true;
         settings = {
