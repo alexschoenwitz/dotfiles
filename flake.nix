@@ -38,6 +38,13 @@
       );
 
       user = import ./lib/user.nix;
+
+      dotnetBinaryOverlay = final: prev: {
+        dotnetCorePackages = prev.dotnetCorePackages // {
+          sdk_8_0 = prev.dotnetCorePackages.sdk_8_0-bin;
+          runtime_8_0 = prev.dotnetCorePackages.runtime_8_0-bin;
+        };
+      };
     in
     {
       darwinConfigurations = {
@@ -48,6 +55,7 @@
           };
           modules = [
             ./machines/home
+            { nixpkgs.overlays = [ dotnetBinaryOverlay ]; }
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -68,6 +76,7 @@
           };
           modules = [
             ./machines/work
+            { nixpkgs.overlays = [ dotnetBinaryOverlay ]; }
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

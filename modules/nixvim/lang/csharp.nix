@@ -1,6 +1,7 @@
 {
   lsp.servers.omnisharp = {
     enable = true;
+    package = null;
     extraOptions = {
       cmd = [
         "omnisharp"

@@ -1,8 +1,6 @@
 { pkgs, user, ... }:
 {
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  nixpkgs.config.allowUnfree = true;
   nix.package = pkgs.nix;
   nix.settings = {
     trusted-users = [
