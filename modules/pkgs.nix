@@ -18,6 +18,7 @@ let
     grpcui
     grpcurl
     jq
+    postgresql
     ripgrep
     tmux
     tree
