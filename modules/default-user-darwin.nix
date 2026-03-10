@@ -16,6 +16,11 @@
           "${pkgs.colima}/bin/colima"
           "start"
           "--foreground"
+          "--cpu" "4"
+          "--memory" "8"
+          "--disk" "60"
+          "--vm-type" "vz"
+          "--mount-type" "virtiofs"
         ];
         RunAtLoad = true;
         KeepAlive = false;
@@ -41,23 +46,5 @@
       };
     };
 
-    home.activation.colima-config = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      mkdir -p ~/.colima/default
-      cat > ~/.colima/default/colima.yaml << 'EOF'
-      cpu: 4
-      disk: 60
-      memory: 8
-      arch: aarch64
-      runtime: docker
-
-      kubernetes:
-        enabled: false
-
-      vmType: vz
-      mountType: virtiofs
-
-      docker: {}
-      EOF
-    '';
   };
 }
