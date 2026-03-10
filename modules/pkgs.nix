@@ -45,8 +45,6 @@ let
     uv
 
     llm-agents-pkgs.rtk
-    cargo-zigbuild
-    zig
     kind
   ];
 in

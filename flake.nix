@@ -22,11 +22,17 @@
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       darwin,
+      fenix,
       home-manager,
       llm-agents,
       nixpkgs,
@@ -61,7 +67,7 @@
           };
           modules = [
             ./machines/home
-            { nixpkgs.overlays = [ dotnetBinaryOverlay ]; }
+            { nixpkgs.overlays = [ dotnetBinaryOverlay fenix.overlays.default ]; }
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -83,7 +89,7 @@
           };
           modules = [
             ./machines/work
-            { nixpkgs.overlays = [ dotnetBinaryOverlay ]; }
+            { nixpkgs.overlays = [ dotnetBinaryOverlay fenix.overlays.default ]; }
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
