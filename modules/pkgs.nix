@@ -8,16 +8,19 @@ let
 
   sharedPackages = with pkgs; [
     _1password-cli
+    buf
     curl
     docker
     docker-compose
     eza
     fzf
+    gh
     git
     gnupg
     grpcui
     grpcurl
     jq
+    protobuf
     postgresql
     ripgrep
     tmux
@@ -30,6 +33,11 @@ let
     terraform-ls
     tflint
     tree-sitter
+
+    nodejs-slim
+    nodePackages.npm # brings npx with it
+
+    uv
   ];
 in
 {

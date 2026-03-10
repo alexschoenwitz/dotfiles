@@ -187,4 +187,4 @@ run = 'move-node-to-workspace V'
 
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
-run = 'move-node-to-workspace P'
+run = 'layout floating'
