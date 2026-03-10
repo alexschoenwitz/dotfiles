@@ -20,6 +20,7 @@ let
     grpcui
     grpcurl
     jq
+    kubectl
     protobuf
     postgresql
     ripgrep

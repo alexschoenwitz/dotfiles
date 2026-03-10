@@ -1,50 +1,18 @@
-export EDITOR=nvim
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':fzf-tab:*' fzf-flags --height=50%
 
-# Completion settings
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'    # Case insensitive matching
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"      # Colored completions
-zstyle ':fzf-tab:*' fzf-flags --height=50%                   # fzf-tab window height
-
-
-# Auto-start tmux in Ghostty
 if [[ -z "$TMUX" && "$TERM_PROGRAM" == "ghostty" ]]; then
     exec tmux new-session -A -s main
 fi
 
-# Aliases for eza/ls
-if (( $+commands[eza] )); then
-    alias l='eza'
-    alias ls='eza'
-    alias ll='eza -l'
-    alias lll='eza -la'
-else
-    alias l='ls'
-    alias ll='ls -l'
-    alias lll='ls -la'
-fi
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
-# URL encoding/decoding
-alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
-alias urlencode='python3 -c "import sys, urllib.parse as ul; print(ul.quote_plus(sys.argv[1]))"'
-
-# Zoxide and fzf are configured via home-manager (programs.zoxide, programs.fzf)
-# This ensures they initialize at the correct point in the shell startup
-
-# Fast git prompt (reads .git/HEAD directly, no fork)
-_git_branch() {
-  local git_dir head
-  git_dir="${$(git rev-parse --git-dir 2>/dev/null):-}"
-  [[ -z "$git_dir" ]] && return
-  head=$(<"$git_dir/HEAD")
-  [[ "$head" == ref:* ]] && echo " (${head#ref: refs/heads/})" || echo " (${head:0:7})"
+kp() {
+    kubectl exec -it "$1" -- /bin/bash || kubectl exec -it "$1" -- /bin/sh
 }
 
-setopt PROMPT_SUBST
-PROMPT='%3~$(_git_branch) %# '
-
-# Open file:line from command output in nvim
-# Usage: make test 2>&1 | vf
-# Supports file.ext:line and file.ext(line,col) formats
 vf() {
     if [[ -t 0 ]]; then
         echo "Usage: command 2>&1 | vf"
@@ -53,7 +21,9 @@ vf() {
     local selection file line tmpfile
     tmpfile=$(mktemp)
     tee "$tmpfile"
-    selection=$(grep -oE '[^ "]+\.[a-zA-Z]+[:\(][0-9]+' "$tmpfile" | sed 's/(/:/' | fzf --height 40%)
+    selection=$(grep -oE '[^ "]+\.[a-zA-Z0-9]+[:\(][0-9]+' "$tmpfile" | \
+                sed 's/(/:/' | \
+                fzf --height 50% --preview 'bat --style=numbers --color=always --highlight-line {2} {1}' --delimiter :)
     rm -f "$tmpfile"
     if [[ -n "$selection" ]]; then
         file="${selection%%:*}"
