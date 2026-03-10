@@ -17,12 +17,18 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       darwin,
       home-manager,
+      llm-agents,
       nixpkgs,
       nixvim,
       ...
@@ -65,6 +71,7 @@
               ];
               home-manager.extraSpecialArgs = {
                 user = user;
+                llm-agents-pkgs = llm-agents.packages.aarch64-darwin;
               };
             }
           ];
@@ -86,6 +93,7 @@
               ];
               home-manager.extraSpecialArgs = {
                 user = user;
+                llm-agents-pkgs = llm-agents.packages.aarch64-darwin;
               };
             }
           ];

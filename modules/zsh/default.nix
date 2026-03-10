@@ -64,7 +64,7 @@
   programs.bat = {
     enable = true;
     config = {
-      paging = "auto";
+      paging = "never";
       style = "plain";
     };
   };
@@ -97,6 +97,8 @@
     enableZshIntegration = true;
     options = [ "--cmd cd" ];
   };
+
+  home.sessionVariables._ZO_DOCTOR = 0;
 
   programs.fzf = {
     enable = true;

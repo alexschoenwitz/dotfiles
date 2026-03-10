@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, llm-agents-pkgs, ... }:
 let
   darwinOnlyPackages = with pkgs; [
     aerospace
@@ -19,11 +19,14 @@ let
     gnupg
     grpcui
     grpcurl
+    istioctl
     jq
+    k9s
     kubectl
     protobuf
     postgresql
     ripgrep
+    skaffold
     sqlx-cli
     tmux
     tree
@@ -40,6 +43,11 @@ let
     nodePackages.npm # brings npx with it
 
     uv
+
+    llm-agents-pkgs.rtk
+    cargo-zigbuild
+    zig
+    kind
   ];
 in
 {
