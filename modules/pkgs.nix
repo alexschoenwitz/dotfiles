@@ -24,6 +24,7 @@ let
     protobuf
     postgresql
     ripgrep
+    sqlx-cli
     tmux
     tree
     websocat
