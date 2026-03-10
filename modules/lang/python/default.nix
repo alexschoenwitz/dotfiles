@@ -1,4 +1,7 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.ruff ];
+  home.packages = with pkgs; [
+    ruff
+    uv
+  ];
 }

@@ -1,7 +1,4 @@
 { pkgs, ... }:
 {
-  home.packages = [
-    pkgs.nil
-    pkgs.nixfmt
-  ];
+  home.packages = [ pkgs.nixfmt ];
 }

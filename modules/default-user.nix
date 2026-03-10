@@ -8,8 +8,10 @@
     ./ghostty
     ./git
     ./home.nix
+    ./kubernetes
     ./nixvim
     ./pkgs.nix
+    ./protobuf
     ./lang.nix
     ./tmux
     ./zsh
