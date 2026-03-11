@@ -4,6 +4,7 @@
 { ... }:
 {
   imports = [
+    ./theme/colors.nix
     ./direnv.nix
     ./ghostty
     ./git

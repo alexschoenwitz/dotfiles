@@ -1,6 +1,36 @@
-{ config, pkgs, ... }:
-{
-  xdg.configFile."ghostty/config" = {
-    source = config.lib.file.mkOutOfStoreSymlink ./config;
+{ config, ... }:
+let
+  p = config.theme.palette;
+  theme = name: content: {
+    "ghostty/themes/${name}" = { text = content; };
   };
+in
+{
+  xdg.configFile = {
+    "ghostty/config" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./config;
+    };
+  } // theme "base16-gruvbox-dark" ''
+    background = #${p.base00}
+    foreground = #${p.base05}
+    cursor-color = #${p.base05}
+    selection-background = #${p.base02}
+    selection-foreground = #${p.base05}
+    palette = 0=#${p.base00}
+    palette = 1=#${p.base08}
+    palette = 2=#${p.base0B}
+    palette = 3=#${p.base0A}
+    palette = 4=#${p.base0D}
+    palette = 5=#${p.base0E}
+    palette = 6=#${p.base0C}
+    palette = 7=#${p.base05}
+    palette = 8=#${p.base03}
+    palette = 9=#${p.base08}
+    palette = 10=#${p.base0B}
+    palette = 11=#${p.base0A}
+    palette = 12=#${p.base0D}
+    palette = 13=#${p.base0E}
+    palette = 14=#${p.base0C}
+    palette = 15=#${p.base07}
+  '';
 }

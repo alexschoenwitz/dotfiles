@@ -9,7 +9,7 @@ font-size = 18
 mouse-hide-while-typing = true
 scrollback-limit = 1000000
 shell-integration = zsh
-theme = dark:Gruvbox Dark,light:Gruvbox Light Hard
+theme = dark:base16-gruvbox-dark,light:Gruvbox Light Hard
 window-save-state = always
 window-theme = ghostty
 
