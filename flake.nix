@@ -27,6 +27,8 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-colors.url = "github:Misterio77/nix-colors";
   };
 
   outputs =
@@ -35,6 +37,7 @@
       fenix,
       home-manager,
       llm-agents,
+      nix-colors,
       nixpkgs,
       nixvim,
       ...
@@ -78,6 +81,7 @@
               home-manager.extraSpecialArgs = {
                 user = user;
                 llm-agents-pkgs = llm-agents.packages.aarch64-darwin;
+                inherit nix-colors;
               };
             }
           ];
@@ -100,6 +104,7 @@
               home-manager.extraSpecialArgs = {
                 user = user;
                 llm-agents-pkgs = llm-agents.packages.aarch64-darwin;
+                inherit nix-colors;
               };
             }
           ];

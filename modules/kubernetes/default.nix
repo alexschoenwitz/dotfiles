@@ -121,7 +121,7 @@ in
     programs.k9s = {
       enable = true;
 
-      settings.k9s.ui.skin = "gruvbox-dark";
+      settings.k9s.ui.skin = "theme";
 
       aliases.aliases = {
         dp = "deployments";
@@ -134,7 +134,7 @@ in
         np = "networkpolicies";
       };
 
-      skins.gruvbox-dark = skin;
+      skins.theme = skin;
     };
   };
 }

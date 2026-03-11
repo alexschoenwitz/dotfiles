@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   programs.nixvim = {
     globals.mapleader = " ";
@@ -8,7 +8,7 @@
         link = "StatusLineNC";
       };
       Comment = {
-        fg = "#a89984"; # gruvbox fg4 - brighter grey
+        fg = config.theme.paletteHash.base04;
         italic = true;
       };
     };
