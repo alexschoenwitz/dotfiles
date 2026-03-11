@@ -1,16 +1,23 @@
 { config, ... }:
 let
   p = config.theme.palette;
-  theme = name: content: {
-    "ghostty/themes/${name}" = { text = content; };
-  };
 in
 {
-  xdg.configFile = {
-    "ghostty/config" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./config;
-    };
-  } // theme "base16-gruvbox-dark" ''
+  xdg.configFile."ghostty/config".text = ''
+    clipboard-paste-protection = false
+    clipboard-read = allow
+    font-family = Noto Sans Mono
+    font-size = 18
+    mouse-hide-while-typing = true
+    scrollback-limit = 1000000
+    shell-integration = zsh
+    window-save-state = always
+    window-theme = ghostty
+    fullscreen = true
+    macos-non-native-fullscreen = true
+    macos-titlebar-style = hidden
+    macos-option-as-alt = true
+    keybind = shift+enter=text:\n
     background = #${p.base00}
     foreground = #${p.base05}
     cursor-color = #${p.base05}
