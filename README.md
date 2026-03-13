@@ -31,8 +31,7 @@ sudo scutil --set HostName "home"
 
 4. Apply configuration:
 ```bash
-nix develop
-dot-apply
+nix develop -c dot-apply
 ```
 
 ## Development Commands
