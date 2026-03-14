@@ -16,6 +16,7 @@ let
     gnupg
     jq
     postgresql
+    ranger
     ripgrep
     sqlx-cli
     tree
