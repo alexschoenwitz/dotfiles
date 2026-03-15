@@ -22,14 +22,14 @@ in
       set -g status-style bg=default,fg=#${p.base05}
 
       set -g status-left '#[fg=#${p.base0D},bold]#{session_name} #[fg=#${p.base05}]│ '
-      set -g status-right '#[fg=#${p.base05}]%Y-%m-%d #[fg=#${p.base0D},bold]%H:%M'
+      set -g status-right '#[fg=#${p.base0E}]#(~/.config/tmux/kube-tmux.sh) #[fg=#${p.base05}]%Y-%m-%d #[fg=#${p.base0D},bold]%H:%M'
 
       set -g window-status-format '#[fg=#${p.base03}] #I:#W '
       set -g window-status-current-format '#[fg=#${p.base0C},bold] #I:#W#{?window_zoomed_flag,Z,} '
       set -g window-status-separator '''
 
       set -gu default-command
-      set -s escape-time 0
+      set -s escape-time 10
 
       set-option -g repeat-time 1000
       setw -g mouse on
@@ -48,7 +48,6 @@ in
 
       set-option -g cursor-style blinking-block
 
-      set-option -g exit-unattached on
 
       set-window-option -g mode-keys vi
       bind-key -T copy-mode-vi v send-keys -X begin-selection
@@ -79,5 +78,10 @@ in
       sensible
       yank
     ];
+  };
+
+  xdg.configFile."tmux/kube-tmux.sh" = {
+    source = ./kube-tmux.sh;
+    executable = true;
   };
 }

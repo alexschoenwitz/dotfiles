@@ -16,14 +16,19 @@
           "${pkgs.colima}/bin/colima"
           "start"
           "--foreground"
-          "--cpu" "4"
-          "--memory" "8"
-          "--disk" "60"
-          "--vm-type" "vz"
-          "--mount-type" "virtiofs"
+          "--cpu"
+          "4"
+          "--memory"
+          "8"
+          "--disk"
+          "60"
+          "--vm-type"
+          "vz"
+          "--mount-type"
+          "virtiofs"
         ];
         RunAtLoad = true;
-        KeepAlive = false;
+        KeepAlive = true;
       };
     };
 

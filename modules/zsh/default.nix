@@ -66,14 +66,10 @@
     enableZshIntegration = true;
     settings = {
       add_newline = false;
-      format = "$directory$git_branch$git_status$kubernetes$nix_shell$character";
+      format = "$directory$git_branch$git_status$nix_shell$character";
       directory.truncation_length = 3;
       git_branch.format = "[$branch]($style) ";
       git_status.format = "[$all_status$ahead_behind]($style) ";
-      kubernetes = {
-        disabled = false;
-        format = "[$context]($style) ";
-      };
       nix_shell = {
         format = "[$state]($style) ";
       };
