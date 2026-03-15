@@ -8,7 +8,6 @@
     ./direnv.nix
     ./ghostty
     ./git
-    ./jj
     ./home.nix
     ./kubernetes
     ./nixvim
