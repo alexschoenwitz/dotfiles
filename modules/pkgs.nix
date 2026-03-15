@@ -15,6 +15,7 @@ let
     gh
     gnupg
     jq
+    mosquitto
     postgresql
     ranger
     ripgrep
