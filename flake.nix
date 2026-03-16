@@ -70,7 +70,12 @@
           };
           modules = [
             ./machines/home
-            { nixpkgs.overlays = [ dotnetBinaryOverlay fenix.overlays.default ]; }
+            {
+              nixpkgs.overlays = [
+                dotnetBinaryOverlay
+                fenix.overlays.default
+              ];
+            }
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -93,7 +98,12 @@
           };
           modules = [
             ./machines/work
-            { nixpkgs.overlays = [ dotnetBinaryOverlay fenix.overlays.default ]; }
+            {
+              nixpkgs.overlays = [
+                dotnetBinaryOverlay
+                fenix.overlays.default
+              ];
+            }
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -163,6 +173,44 @@
                   exit 1
                 fi
               '')
+            ];
+          };
+
+          projects = pkgs.mkShell {
+            DOTNET_ROOT = "${pkgs.dotnetCorePackages.sdk_10_0-bin}/share/dotnet";
+            PROTOC_INCLUDE = "${pkgs.protobuf}/include";
+            LOCALE_ARCHIVE = pkgs.lib.optionalString pkgs.stdenv.isLinux "${pkgs.glibcLocales}/lib/locale/locale-archive";
+            shellHook = ''
+              export SDKROOT=${pkgs.apple-sdk}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+              export CPATH="$SDKROOT/usr/include"
+              export LIBRARY_PATH="$SDKROOT/usr/lib"
+
+              mkdir -p .nix-bin
+              cat > .nix-bin/xcrun <<'EOF'
+              #!/bin/bash
+              if [[ "$1" == "--show-sdk-path" ]]; then
+                echo "${pkgs.apple-sdk}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+              else
+                echo "xcrun: unsupported command: $@" >&2
+                exit 1
+              fi
+              EOF
+              chmod +x .nix-bin/xcrun
+              export PATH="$(pwd)/.nix-bin:$PATH"
+            '';
+            packages = with pkgs; [
+              awscli2
+              bashInteractive
+              dotnetCorePackages.sdk_10_0-bin
+              envsubst
+              flutter
+              just
+              jwt-cli
+              lcov
+              openfga-cli
+              protoc-gen-dart
+              yq
+              apple-sdk
             ];
           };
         }
