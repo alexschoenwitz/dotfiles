@@ -31,7 +31,7 @@
 
   networking.networkmanager.enable = true;
 
-  time.timeZone = "Europe/Berlin";
+  time.timeZone = "Europe/Lisbon";
   i18n.defaultLocale = "en_US.UTF-8";
 
   users.users.${user.username} = {
@@ -48,7 +48,10 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings.PrintLastLog = false;
+  };
 
   virtualisation.docker.enable = true;
 
