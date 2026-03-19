@@ -7,6 +7,7 @@ let
   ];
 
   sharedPackages = with pkgs; [
+    lima
     _1password-cli
     curl
     docker

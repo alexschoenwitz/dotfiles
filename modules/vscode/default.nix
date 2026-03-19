@@ -102,14 +102,16 @@ let
   ];
 in
 {
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscode;
-    mutableExtensionsDir = true;
-    profiles.default = {
-      extensions = allExtensions;
-      userSettings = mergedSettings;
-      keybindings = import ./keybindings.nix;
+  config = lib.mkIf pkgs.stdenv.isDarwin {
+    programs.vscode = {
+      enable = true;
+      package = pkgs.vscode;
+      mutableExtensionsDir = true;
+      profiles.default = {
+        extensions = allExtensions;
+        userSettings = mergedSettings;
+        keybindings = import ./keybindings.nix;
+      };
     };
   };
 }

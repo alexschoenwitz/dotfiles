@@ -2,6 +2,8 @@
 {
   home.username = user.username;
   home.stateVersion = "24.11";
+  home.homeDirectory =
+    if pkgs.stdenv.isDarwin then "/Users/${user.username}" else "/home/${user.username}";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

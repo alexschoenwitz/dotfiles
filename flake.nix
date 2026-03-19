@@ -29,6 +29,11 @@
     };
 
     nix-colors.url = "github:Misterio77/nix-colors";
+
+    nixos-lima = {
+      url = "github:nixos-lima/nixos-lima";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -38,6 +43,7 @@
       home-manager,
       llm-agents,
       nix-colors,
+      nixos-lima,
       nixpkgs,
       nixvim,
       ...
@@ -60,6 +66,23 @@
           runtime_8_0 = prev.dotnetCorePackages.runtime_8_0-bin;
         };
       };
+
+      commonOverlays = [
+        dotnetBinaryOverlay
+        fenix.overlays.default
+      ];
+
+      homeManagerConfig =
+        system: userOverride: {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = false;
+          home-manager.sharedModules = [ nixvim.homeModules.nixvim ];
+          home-manager.extraSpecialArgs = {
+            user = userOverride;
+            llm-agents-pkgs = llm-agents.packages.${system};
+            inherit nix-colors;
+          };
+        };
     in
     {
       darwinConfigurations = {
@@ -70,25 +93,9 @@
           };
           modules = [
             ./machines/home
-            {
-              nixpkgs.overlays = [
-                dotnetBinaryOverlay
-                fenix.overlays.default
-              ];
-            }
+            { nixpkgs.overlays = commonOverlays; }
             home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = false;
-              home-manager.sharedModules = [
-                nixvim.homeModules.nixvim
-              ];
-              home-manager.extraSpecialArgs = {
-                user = user;
-                llm-agents-pkgs = llm-agents.packages.aarch64-darwin;
-                inherit nix-colors;
-              };
-            }
+            (homeManagerConfig "aarch64-darwin" user)
           ];
         };
         work = darwin.lib.darwinSystem {
@@ -98,25 +105,27 @@
           };
           modules = [
             ./machines/work
-            {
-              nixpkgs.overlays = [
-                dotnetBinaryOverlay
-                fenix.overlays.default
-              ];
-            }
+            { nixpkgs.overlays = commonOverlays; }
             home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = false;
-              home-manager.sharedModules = [
-                nixvim.homeModules.nixvim
-              ];
-              home-manager.extraSpecialArgs = {
-                user = user;
-                llm-agents-pkgs = llm-agents.packages.aarch64-darwin;
-                inherit nix-colors;
-              };
-            }
+            (homeManagerConfig "aarch64-darwin" user)
+          ];
+        };
+      };
+
+      nixosConfigurations = {
+        vm = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          specialArgs = {
+            user = user // {
+              username = "lima";
+            };
+          };
+          modules = [
+            nixos-lima.nixosModules.lima
+            ./machines/vm
+            { nixpkgs.overlays = commonOverlays; }
+            home-manager.nixosModules.home-manager
+            (homeManagerConfig "aarch64-linux" (user // { username = "lima"; }))
           ];
         };
       };
@@ -158,6 +167,10 @@
               (writeScriptBin "dot-apply" ''
                 nix build "./#darwinConfigurations.$(hostname | cut -f1 -d'.').system"
                 sudo ./result/sw/bin/darwin-rebuild switch --flake .
+                if limactl list --json 2>/dev/null | ${pkgs.jq}/bin/jq -e 'select(.name=="nixos" and .status=="Running")' >/dev/null 2>&1; then
+                  echo "Rebuilding NixOS VM..."
+                  dot-vm-rebuild
+                fi
               '')
               (writeScriptBin "dot-check" ''
                 echo "Checking flake..."
@@ -172,6 +185,26 @@
                   echo "Available configurations: home, work"
                   exit 1
                 fi
+              '')
+              (writeScriptBin "dot-vm-start" ''
+                STATUS=$(limactl list --json 2>/dev/null | ${pkgs.jq}/bin/jq -r 'select(.name=="nixos") | .status')
+                if [ -z "$STATUS" ]; then
+                  echo "Creating NixOS VM..."
+                  limactl start --tty=false --name=nixos ./machines/vm/nixos.yaml
+                  echo "Applying dotfiles configuration..."
+                  dot-vm-rebuild
+                elif [ "$STATUS" != "Running" ]; then
+                  limactl start nixos
+                else
+                  echo "NixOS VM is already running."
+                fi
+              '')
+              (writeScriptBin "dot-vm-shell" ''
+                ssh -F /Users/${user.username}/.lima/nixos/ssh.config lima-nixos
+              '')
+              (writeScriptBin "dot-vm-rebuild" ''
+                limactl shell nixos -- sudo nixos-rebuild switch --flake /Users/${user.username}/.config/dotfiles#vm
+                ssh -F /Users/${user.username}/.lima/nixos/ssh.config -O exit lima-nixos 2>/dev/null || true
               '')
             ];
           };

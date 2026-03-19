@@ -22,6 +22,5 @@
     "markdown.preview.scrollEditorWithPreview" = false;
     "markdown.preview.scrollPreviewWithEditor" = false;
     "redhat.telemetry.enabled" = false;
-    "[xml]"."editor.defaultFormatter" = "redhat.vscode-xml";
   };
 }

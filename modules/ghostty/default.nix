@@ -1,9 +1,10 @@
-{ config, ... }:
+{ config, lib, pkgs, ... }:
 let
   p = config.theme.palette;
 in
 {
-  xdg.configFile."ghostty/config".text = ''
+  config = lib.mkIf pkgs.stdenv.isDarwin {
+    xdg.configFile."ghostty/config".text = ''
     clipboard-paste-protection = false
     clipboard-read = allow
     font-family = Noto Sans Mono
@@ -40,4 +41,5 @@ in
     palette = 14=#${p.base0C}
     palette = 15=#${p.base07}
   '';
+  };
 }
