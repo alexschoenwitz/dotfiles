@@ -30,6 +30,11 @@
 
     nix-colors.url = "github:Misterio77/nix-colors";
 
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-lima = {
       url = "github:nixos-lima/nixos-lima";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +48,7 @@
       home-manager,
       llm-agents,
       nix-colors,
+      nix-index-database,
       nixos-lima,
       nixpkgs,
       nixvim,
@@ -76,7 +82,10 @@
         system: userOverride: {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = false;
-          home-manager.sharedModules = [ nixvim.homeModules.nixvim ];
+          home-manager.sharedModules = [
+            nixvim.homeModules.nixvim
+            nix-index-database.homeModules.default
+          ];
           home-manager.extraSpecialArgs = {
             user = userOverride;
             llm-agents-pkgs = llm-agents.packages.${system};
@@ -200,7 +209,7 @@
                 fi
               '')
               (writeScriptBin "dot-vm-shell" ''
-                ssh -F /Users/${user.username}/.lima/nixos/ssh.config lima-nixos
+                ssh -A -F /Users/${user.username}/.lima/nixos/ssh.config lima-nixos
               '')
               (writeScriptBin "dot-vm-rebuild" ''
                 limactl shell nixos -- sudo nixos-rebuild switch --flake /Users/${user.username}/.config/dotfiles#vm

@@ -35,6 +35,10 @@
           "accept"
           "fallback"
         ];
+        "<Esc>" = [
+          "cancel"
+          "fallback"
+        ];
         "<Tab>" = [
           "select_next"
           "fallback"
