@@ -2,9 +2,9 @@
 {
   imports = [ ../shared/darwin.nix ];
 
-  homebrew.casks = [
-    "brave-browser"
-  ];
+  # homebrew.casks = [
+  #   "brave-browser"
+  # ];
 
   home-manager.users.${user.username} = {
     imports = [ ../../modules/default-user.nix ];

@@ -24,8 +24,7 @@
   nix.gc = {
     automatic = true;
     interval = {
-      Weekday = 0;
-      Hour = 3;
+      Hour = 12;
       Minute = 0;
     };
     options = "--delete-older-than 30d";
@@ -34,8 +33,7 @@
   nix.optimise = {
     automatic = true;
     interval = {
-      Weekday = 0;
-      Hour = 4;
+      Hour = 13;
       Minute = 0;
     };
   };
@@ -50,10 +48,10 @@
     shell = pkgs.bash;
   };
 
-  homebrew = {
-    enable = true;
-    casks = [ "1password" ];
-  };
+  # homebrew = {
+  #   enable = true;
+  #   casks = [ "1password" ];
+  # };
 
   system = {
     primaryUser = user.username;

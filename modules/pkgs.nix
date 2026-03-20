@@ -2,6 +2,7 @@
 let
   darwinOnlyPackages = with pkgs; [
     aerospace
+    brave
     colima
     ghostty-bin
   ];
@@ -9,6 +10,7 @@ let
   sharedPackages = with pkgs; [
     lima
     _1password-cli
+    _1password-gui
     curl
     docker
     docker-compose
