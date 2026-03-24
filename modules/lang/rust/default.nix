@@ -7,6 +7,7 @@ let
     pkgs.fenix.stable.rustfmt
     pkgs.fenix.stable.rust-src
     pkgs.fenix.targets.aarch64-unknown-linux-gnu.stable.rust-std
+    pkgs.fenix.targets.wasm32-unknown-unknown.stable.rust-std
   ];
 in
 {
@@ -15,5 +16,6 @@ in
     pkgs.rust-analyzer
     pkgs.cargo-zigbuild
     pkgs.zig
+    pkgs.trunk
   ];
 }

@@ -29,7 +29,7 @@ in
       set -g window-status-separator '''
 
       set -gu default-command
-      set -s escape-time 100
+      set -s escape-time 0
 
       set-option -g repeat-time 1000
       setw -g mouse on
