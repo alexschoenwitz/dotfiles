@@ -13,7 +13,6 @@
     programs.git.settings.user.email = "alexandre.schoenwitz@freiheit.com";
     programs.git.signing.key = "~/.ssh/id_rsa.pub";
     home.packages = [
-      pkgs.github-copilot-cli
       pkgs.claude-code
     ];
   };
