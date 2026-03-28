@@ -34,11 +34,6 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixos-lima = {
-      url = "github:nixos-lima/nixos-lima";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -49,7 +44,6 @@
       llm-agents,
       nix-colors,
       nix-index-database,
-      nixos-lima,
       nixpkgs,
       nixvim,
       ...
@@ -78,20 +72,19 @@
         fenix.overlays.default
       ];
 
-      homeManagerConfig =
-        system: userOverride: {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = false;
-          home-manager.sharedModules = [
-            nixvim.homeModules.nixvim
-            nix-index-database.homeModules.default
-          ];
-          home-manager.extraSpecialArgs = {
-            user = userOverride;
-            llm-agents-pkgs = llm-agents.packages.${system};
-            inherit nix-colors;
-          };
+      homeManagerConfig = system: userOverride: {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = false;
+        home-manager.sharedModules = [
+          nixvim.homeModules.nixvim
+          nix-index-database.homeModules.default
+        ];
+        home-manager.extraSpecialArgs = {
+          user = userOverride;
+          llm-agents-pkgs = llm-agents.packages.${system};
+          inherit nix-colors;
         };
+      };
     in
     {
       darwinConfigurations = {
@@ -117,24 +110,6 @@
             { nixpkgs.overlays = commonOverlays; }
             home-manager.darwinModules.home-manager
             (homeManagerConfig "aarch64-darwin" user)
-          ];
-        };
-      };
-
-      nixosConfigurations = {
-        vm = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          specialArgs = {
-            user = user // {
-              username = "lima";
-            };
-          };
-          modules = [
-            nixos-lima.nixosModules.lima
-            ./machines/vm
-            { nixpkgs.overlays = commonOverlays; }
-            home-manager.nixosModules.home-manager
-            (homeManagerConfig "aarch64-linux" (user // { username = "lima"; }))
           ];
         };
       };
@@ -176,10 +151,6 @@
               (writeScriptBin "dot-apply" ''
                 nix build "./#darwinConfigurations.$(hostname | cut -f1 -d'.').system"
                 sudo ./result/sw/bin/darwin-rebuild switch --flake .
-                if limactl list --json 2>/dev/null | ${pkgs.jq}/bin/jq -e 'select(.name=="nixos" and .status=="Running")' >/dev/null 2>&1; then
-                  echo "Rebuilding NixOS VM..."
-                  dot-vm-rebuild
-                fi
               '')
               (writeScriptBin "dot-check" ''
                 echo "Checking flake..."
@@ -195,66 +166,9 @@
                   exit 1
                 fi
               '')
-              (writeScriptBin "dot-vm-start" ''
-                STATUS=$(limactl list --json 2>/dev/null | ${pkgs.jq}/bin/jq -r 'select(.name=="nixos") | .status')
-                if [ -z "$STATUS" ]; then
-                  echo "Creating NixOS VM..."
-                  limactl start --tty=false --name=nixos ./machines/vm/nixos.yaml
-                  echo "Applying dotfiles configuration..."
-                  dot-vm-rebuild
-                elif [ "$STATUS" != "Running" ]; then
-                  limactl start nixos
-                else
-                  echo "NixOS VM is already running."
-                fi
-              '')
-              (writeScriptBin "dot-vm-shell" ''
-                ssh -A -F /Users/${user.username}/.lima/nixos/ssh.config lima-nixos
-              '')
-              (writeScriptBin "dot-vm-rebuild" ''
-                limactl shell nixos -- sudo nixos-rebuild switch --flake /Users/${user.username}/.config/dotfiles#vm
-                ssh -F /Users/${user.username}/.lima/nixos/ssh.config -O exit lima-nixos 2>/dev/null || true
-              '')
             ];
           };
 
-          projects = pkgs.mkShell {
-            DOTNET_ROOT = "${pkgs.dotnetCorePackages.sdk_10_0-bin}/share/dotnet";
-            PROTOC_INCLUDE = "${pkgs.protobuf}/include";
-            LOCALE_ARCHIVE = pkgs.lib.optionalString pkgs.stdenv.isLinux "${pkgs.glibcLocales}/lib/locale/locale-archive";
-            shellHook = ''
-              export SDKROOT=${pkgs.apple-sdk}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
-              export CPATH="$SDKROOT/usr/include"
-              export LIBRARY_PATH="$SDKROOT/usr/lib"
-
-              mkdir -p .nix-bin
-              cat > .nix-bin/xcrun <<'EOF'
-              #!/bin/bash
-              if [[ "$1" == "--show-sdk-path" ]]; then
-                echo "${pkgs.apple-sdk}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
-              else
-                echo "xcrun: unsupported command: $@" >&2
-                exit 1
-              fi
-              EOF
-              chmod +x .nix-bin/xcrun
-              export PATH="$(pwd)/.nix-bin:$PATH"
-            '';
-            packages = with pkgs; [
-              awscli2
-              bashInteractive
-              dotnetCorePackages.sdk_10_0-bin
-              envsubst
-              flutter
-              just
-              jwt-cli
-              lcov
-              openfga-cli
-              protoc-gen-dart
-              yq
-              apple-sdk
-            ];
-          };
         }
       );
     };
