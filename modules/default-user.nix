@@ -18,6 +18,5 @@
     ./zsh
     ./ssh.nix
     ./default-user-darwin.nix
-    ./vscode
   ];
 }
