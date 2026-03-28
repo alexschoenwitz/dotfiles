@@ -18,11 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    llm-agents = {
-      url = "github:numtide/llm-agents.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,7 +36,6 @@
       darwin,
       fenix,
       home-manager,
-      llm-agents,
       nix-colors,
       nix-index-database,
       nixpkgs,
@@ -81,7 +75,6 @@
         ];
         home-manager.extraSpecialArgs = {
           user = userOverride;
-          llm-agents-pkgs = llm-agents.packages.${system};
           inherit nix-colors;
         };
       };
@@ -134,30 +127,33 @@
         system:
         let
           pkgs = nixpkgsFor.${system};
+          dot-clean = pkgs.writeScriptBin "dot-clean" ''
+            sudo nix-env --delete-generations +5 --profile /nix/var/nix/profiles/system
+            nix-collect-garbage -d --delete-older-than 30d
+          '';
+          dot-apply = pkgs.writeScriptBin "dot-apply" ''
+            nix build "./#darwinConfigurations.$(hostname | cut -f1 -d'.').system"
+            sudo ./result/sw/bin/darwin-rebuild switch --flake .
+          '';
+          dot-check = pkgs.writeScriptBin "dot-check" ''
+            nix flake check
+            ${pkgs.deadnix}/bin/deadnix --fail ${./.}
+            nix eval --json "./#darwinConfigurations.$(hostname | cut -f1 -d'.').config.system.stateVersion" > /dev/null
+          '';
+          dot-sync = pkgs.writeScriptBin "dot-sync" ''
+            git pull --rebase origin main
+            nix flake update
+            ${dot-clean}/bin/dot-clean
+            ${dot-apply}/bin/dot-apply
+          '';
         in
         {
           default = pkgs.mkShellNoCC {
-            buildInputs = with pkgs; [
-              (writeScriptBin "dot-clean" ''
-                sudo nix-env --delete-generations +5 --profile /nix/var/nix/profiles/system
-                nix-collect-garbage -d --delete-older-than 30d
-              '')
-              (writeScriptBin "dot-sync" ''
-                git pull --rebase origin main
-                nix flake update
-                dot-clean
-                dot-apply
-              '')
-              (writeScriptBin "dot-apply" ''
-                nix build "./#darwinConfigurations.$(hostname | cut -f1 -d'.').system"
-                sudo ./result/sw/bin/darwin-rebuild switch --flake .
-              '')
-              deadnix
-              (writeScriptBin "dot-check" ''
-                nix flake check
-                deadnix --fail ${./.}
-                nix eval --json "./#darwinConfigurations.$(hostname | cut -f1 -d'.').config.system.stateVersion" > /dev/null
-              '')
+            buildInputs = [
+              dot-clean
+              dot-apply
+              dot-check
+              dot-sync
             ];
           };
 

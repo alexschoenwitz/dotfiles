@@ -1,4 +1,4 @@
-{ pkgs, llm-agents-pkgs, ... }:
+{ pkgs, ... }:
 let
   darwinOnlyPackages = with pkgs; [
     aerospace
@@ -31,8 +31,6 @@ let
     tree
     websocat
     yq
-
-    llm-agents-pkgs.rtk
   ];
 in
 {
