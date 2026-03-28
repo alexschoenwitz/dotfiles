@@ -1,4 +1,9 @@
-{ lib, config, nix-colors, ... }:
+{
+  lib,
+  config,
+  nix-colors,
+  ...
+}:
 {
   options.theme.palette = lib.mkOption {
     type = lib.types.attrsOf lib.types.str;

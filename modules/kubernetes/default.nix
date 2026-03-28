@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   p = config.theme.paletteHash;
   skin = {
@@ -69,8 +74,14 @@ let
       views = {
         charts = {
           bgColor = "default";
-          defaultDialColors = [ p.base0D p.base08 ];
-          defaultChartColors = [ p.base0D p.base08 ];
+          defaultDialColors = [
+            p.base0D
+            p.base08
+          ];
+          defaultChartColors = [
+            p.base0D
+            p.base08
+          ];
         };
         table = {
           fgColor = p.base06;
@@ -108,7 +119,9 @@ let
   };
 in
 {
-  options.tools.kubernetes.enable = lib.mkEnableOption "Kubernetes tools" // { default = true; };
+  options.tools.kubernetes.enable = lib.mkEnableOption "Kubernetes tools" // {
+    default = true;
+  };
 
   config = lib.mkIf config.tools.kubernetes.enable {
     home.packages = with pkgs; [
