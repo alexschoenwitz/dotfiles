@@ -119,35 +119,29 @@ let
   };
 in
 {
-  options.tools.kubernetes.enable = lib.mkEnableOption "Kubernetes tools" // {
-    default = true;
-  };
+  home.packages = with pkgs; [
+    kubectl
+    istioctl
+    skaffold
+    kind
+  ];
 
-  config = lib.mkIf config.tools.kubernetes.enable {
-    home.packages = with pkgs; [
-      kubectl
-      istioctl
-      skaffold
-      kind
-    ];
+  programs.k9s = {
+    enable = true;
 
-    programs.k9s = {
-      enable = true;
+    settings.k9s.ui.skin = "theme";
 
-      settings.k9s.ui.skin = "theme";
-
-      aliases.aliases = {
-        dp = "deployments";
-        sec = "v1/secrets";
-        jo = "jobs";
-        cr = "clusterroles";
-        crb = "clusterrolebindings";
-        ro = "roles";
-        rb = "rolebindings";
-        np = "networkpolicies";
-      };
-
-      skins.theme = skin;
+    aliases.aliases = {
+      dp = "deployments";
+      sec = "v1/secrets";
+      jo = "jobs";
+      cr = "clusterroles";
+      crb = "clusterrolebindings";
+      ro = "roles";
+      rb = "rolebindings";
+      np = "networkpolicies";
     };
+
+    skins.theme = skin;
   };
 }
