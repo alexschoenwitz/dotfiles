@@ -60,7 +60,7 @@
 
       user = import ./lib/user.nix;
 
-      dotnetBinaryOverlay = final: prev: {
+      dotnetBinaryOverlay = _final: prev: {
         dotnetCorePackages = prev.dotnetCorePackages // {
           sdk_8_0 = prev.dotnetCorePackages.sdk_8_0-bin;
           runtime_8_0 = prev.dotnetCorePackages.runtime_8_0-bin;
@@ -152,9 +152,13 @@
                 nix build "./#darwinConfigurations.$(hostname | cut -f1 -d'.').system"
                 sudo ./result/sw/bin/darwin-rebuild switch --flake .
               '')
+              deadnix
               (writeScriptBin "dot-check" ''
                 echo "Checking flake..."
                 nix flake check
+                echo ""
+                echo "Checking for dead code..."
+                deadnix --fail ${./.}
                 echo ""
                 echo "Validating configuration..."
                 MACHINE=$(hostname | cut -f1 -d'.')
