@@ -14,10 +14,8 @@ let
     curl
     docker
     docker-compose
-    dotnetCorePackages.sdk_10_0-bin
     envsubst
     eza
-    flutter
     gh
     gnupg
     jq
@@ -27,7 +25,6 @@ let
     mosquitto
     openfga-cli
     postgresql
-    protoc-gen-dart
     ranger
     ripgrep
     sqlx-cli
