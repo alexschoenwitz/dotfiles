@@ -154,21 +154,9 @@
               '')
               deadnix
               (writeScriptBin "dot-check" ''
-                echo "Checking flake..."
                 nix flake check
-                echo ""
-                echo "Checking for dead code..."
                 deadnix --fail ${./.}
-                echo ""
-                echo "Validating configuration..."
-                MACHINE=$(hostname | cut -f1 -d'.')
-                if nix eval --json "./#darwinConfigurations.$MACHINE.config.system.stateVersion" 2>/dev/null; then
-                  echo "✓ Configuration for '$MACHINE' is valid"
-                else
-                  echo "✗ Configuration for '$MACHINE' not found"
-                  echo "Available configurations: home, work"
-                  exit 1
-                fi
+                nix eval --json "./#darwinConfigurations.$(hostname | cut -f1 -d'.').config.system.stateVersion" > /dev/null
               '')
             ];
           };
