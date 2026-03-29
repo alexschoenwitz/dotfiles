@@ -129,7 +129,7 @@
           pkgs = nixpkgsFor.${system};
           dot-clean = pkgs.writeScriptBin "dot-clean" ''
             sudo nix-env --delete-generations +5 --profile /nix/var/nix/profiles/system
-            nix-collect-garbage -d --delete-older-than 30d
+            sudo nix-collect-garbage -d --delete-older-than 30d
           '';
           dot-apply = pkgs.writeScriptBin "dot-apply" ''
             nix build "./#darwinConfigurations.$(hostname | cut -f1 -d'.').system"

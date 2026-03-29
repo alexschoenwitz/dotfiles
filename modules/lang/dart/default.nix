@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    flutter
+    flutter338
     protoc-gen-dart
   ];
 }
