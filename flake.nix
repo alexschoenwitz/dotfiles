@@ -128,7 +128,7 @@
         let
           pkgs = nixpkgsFor.${system};
           dot-clean = pkgs.writeScriptBin "dot-clean" ''
-            sudo nix-env --delete-generations +5 --profile /nix/var/nix/profiles/system
+            sudo HOME=/var/root nix-env --delete-generations +5 --profile /nix/var/nix/profiles/system
             sudo nix-collect-garbage -d --delete-older-than 30d
           '';
           dot-apply = pkgs.writeScriptBin "dot-apply" ''
