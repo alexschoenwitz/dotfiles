@@ -18,6 +18,7 @@ let
     eza
     gh
     gnupg
+    insomnia
     jq
     just
     jwt-cli
