@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     nodejs-slim
-    nodePackages.npm
     prettierd
   ];
 }
