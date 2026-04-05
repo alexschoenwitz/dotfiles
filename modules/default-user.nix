@@ -4,6 +4,7 @@
 { ... }:
 {
   imports = [
+    ./atuin.nix
     ./theme/colors.nix
     ./direnv.nix
     ./ghostty

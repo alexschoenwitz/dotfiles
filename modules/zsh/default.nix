@@ -67,7 +67,11 @@
     settings = {
       add_newline = false;
       command_timeout = 2000;
-      format = "$directory$git_branch$git_status$character";
+      format = "$directory$git_branch$git_status$cmd_duration$character";
+      cmd_duration = {
+        min_time = 2000;
+        format = "[$duration]($style) ";
+      };
       directory.truncation_length = 3;
       git_branch.format = "[$branch]($style) ";
       git_status = {

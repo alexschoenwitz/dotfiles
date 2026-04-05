@@ -16,6 +16,7 @@ let
     docker-compose
     envsubst
     eza
+    fd
     gh
     gnupg
     insomnia

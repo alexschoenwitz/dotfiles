@@ -88,6 +88,15 @@
       rerere = {
         enabled = true;
       };
+      diff = {
+        algorithm = "histogram";
+      };
+      merge = {
+        conflictstyle = "zdiff3";
+      };
+      commit = {
+        verbose = true;
+      };
     };
     ignores = lib.splitString "\n" (builtins.readFile ./gitignore_global);
   };
