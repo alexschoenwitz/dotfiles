@@ -5,6 +5,7 @@ let
     brave
     colima
     ghostty-bin
+    insomnia
   ];
 
   sharedPackages = with pkgs; [
@@ -19,7 +20,6 @@ let
     fd
     gh
     gnupg
-    insomnia
     jq
     just
     jwt-cli
