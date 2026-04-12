@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    nodejs-slim
+    nodejs_22
     prettierd
   ];
 }

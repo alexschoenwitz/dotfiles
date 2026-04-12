@@ -5,6 +5,7 @@
 {
   imports = [
     ./atuin.nix
+    ./claude-code
     ./theme/colors.nix
     ./direnv.nix
     ./ghostty

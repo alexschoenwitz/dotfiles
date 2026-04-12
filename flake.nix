@@ -66,9 +66,9 @@
         fenix.overlays.default
       ];
 
-      homeManagerConfig = system: userOverride: {
+      homeManagerConfig = userOverride: {
         home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = false;
+        home-manager.useUserPackages = true;
         home-manager.sharedModules = [
           nixvim.homeModules.nixvim
           nix-index-database.homeModules.default
@@ -90,7 +90,7 @@
             ./machines/home
             { nixpkgs.overlays = commonOverlays; }
             home-manager.darwinModules.home-manager
-            (homeManagerConfig "aarch64-darwin" user)
+            (homeManagerConfig user)
           ];
         };
         work = darwin.lib.darwinSystem {
@@ -102,7 +102,7 @@
             ./machines/work
             { nixpkgs.overlays = commonOverlays; }
             home-manager.darwinModules.home-manager
-            (homeManagerConfig "aarch64-darwin" user)
+            (homeManagerConfig user)
           ];
         };
       };
