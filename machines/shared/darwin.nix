@@ -45,7 +45,7 @@
   users.users.${user.username} = {
     name = user.username;
     home = "/Users/${user.username}";
-    shell = pkgs.bash;
+    shell = pkgs.zsh;
   };
 
   # homebrew = {
