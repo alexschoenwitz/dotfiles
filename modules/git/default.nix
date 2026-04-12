@@ -10,7 +10,10 @@
   programs.delta = {
     enable = true;
     enableGitIntegration = true;
-    options.syntax-theme = "base16";
+    options = {
+      syntax-theme = "base16";
+      side-by-side = true;
+    };
   };
 
   programs.git = {
@@ -35,7 +38,7 @@
       blame = {
         coloring = "repeatedLines";
         markUnblamables = true;
-        markIgnoredLiens = true;
+        markIgnoredLines = true;
       };
       branch = {
         sort = "-committerdate";
@@ -81,15 +84,26 @@
       push = {
         autoSetupRemote = true;
         default = "simple";
+        followTags = true;
       };
       submodule = {
         fetchJobs = 4;
       };
+      rebase = {
+        autoSquash = true;
+        autoStash = true;
+        updateRefs = true;
+      };
       rerere = {
         enabled = true;
       };
+      column = {
+        ui = "auto";
+      };
       diff = {
         algorithm = "histogram";
+        colorMoved = "plain";
+        renames = true;
       };
       merge = {
         conflictstyle = "zdiff3";

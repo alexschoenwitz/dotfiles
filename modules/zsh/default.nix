@@ -26,6 +26,46 @@
       cat = "bat";
       urldecode = "python3 -c \"import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))\"";
       urlencode = "python3 -c \"import sys, urllib.parse as ul; print(ul.quote_plus(sys.argv[1]))\"";
+
+      # git - core
+      gs = "git status";
+      gd = "git diff";
+      gds = "git diff --staged";
+      ga = "git add";
+      gc = "git commit";
+      gcm = "git commit -m";
+      gcam = "git commit -am";
+      gca = "git commit --amend";
+      gcan = "git commit --amend --no-edit";
+
+      # git - push / pull / sync
+      gp = "git push";
+      gpf = "git push --force-with-lease";
+      gl = "git pull --rebase";
+      gf = "git fetch";
+
+      # git - branching
+      gsw = "git switch";
+      gswc = "git switch -c";
+      gb = "git branch";
+      gr = "git restore";
+      grs = "git restore --staged";
+
+      # git - history & rebase
+      glg = "git log --oneline --graph --decorate";
+      grb = "git rebase";
+      grbi = "git rebase -i";
+      grba = "git rebase --abort";
+      grbc = "git rebase --continue";
+
+      # git - workflow helpers
+      gundo = "git reset --soft HEAD~1";
+      gdm = "git diff main...";
+      gsh = "git show";
+      gst = "git stash";
+      gstp = "git stash pop";
+      gfix = "git commit --fixup";
+      gclean = "git branch --merged main | grep -v 'main' | xargs git branch -d";
     };
 
     setOptions = [
