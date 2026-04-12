@@ -22,7 +22,7 @@ in
       set -g status-style bg=default,fg=#${p.base05}
 
       set -g status-left '#[fg=#${p.base0D},bold]#{session_name} #[fg=#${p.base05}]│ '
-      set -g status-right '#[fg=#${p.base0E}]#(~/.config/tmux/kube-tmux.sh) #[fg=#${p.base05}]%Y-%m-%d #[fg=#${p.base0D},bold]%H:%M'
+      set -g status-right '#[fg=#${p.base05}]%Y-%m-%d #[fg=#${p.base0D},bold]%H:%M'
 
       set -g window-status-format '#[fg=#${p.base03}] #I:#W '
       set -g window-status-current-format '#[fg=#${p.base0C},bold] #I:#W#{?window_zoomed_flag,Z,} '
@@ -42,7 +42,7 @@ in
       set-option -g set-titles on
       set-option -g set-titles-string "#S / #W"
 
-      set-option -g status-interval 1
+      set-option -g status-interval 15
       set-option -g automatic-rename on
       set-option -g automatic-rename-format '#{b:pane_current_path}'
 
@@ -78,10 +78,5 @@ in
       sensible
       yank
     ];
-  };
-
-  xdg.configFile."tmux/kube-tmux.sh" = {
-    source = ./kube-tmux.sh;
-    executable = true;
   };
 }

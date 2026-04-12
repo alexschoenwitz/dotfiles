@@ -9,3 +9,8 @@ fi
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+# starship has no right_format configured, but its zsh init still sets
+# RPROMPT='$(starship prompt --right …)' which forks on every redraw.
+# Unset it so zsh skips the fork entirely.
+RPROMPT=''
+
