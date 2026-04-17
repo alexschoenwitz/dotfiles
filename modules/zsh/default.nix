@@ -42,9 +42,10 @@
 
       gp = "git push";
       gl = "git pull --rebase";
+      gc = "git commit";
+
       gr = "git restore";
       grr = "git restore --staged";
-
     };
 
     setOptions = [
