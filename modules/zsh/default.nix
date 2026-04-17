@@ -29,43 +29,22 @@
 
       # git - core
       gs = "git status";
-      gd = "git diff";
-      gds = "git diff --staged";
-      ga = "git add";
-      gc = "git commit";
-      gcm = "git commit -m";
-      gcam = "git commit -am";
-      gca = "git commit --amend";
-      gcan = "git commit --amend --no-edit";
-
-      # git - push / pull / sync
-      gp = "git push";
-      gpf = "git push --force-with-lease";
-      gl = "git pull --rebase";
+      gss = "git switch";
+      gsss = "git switch -c";
+      gt = "git log --all --graph --decorate --oneline";
       gf = "git fetch";
 
-      # git - branching
-      gsw = "git switch";
-      gswc = "git switch -c";
-      gb = "git branch";
-      gr = "git restore";
-      grs = "git restore --staged";
+      gd = "git diff";
+      gdd = "git diff --staged";
+      gddd = "git diff ...origin/main";
 
-      # git - history & rebase
-      glg = "git log --oneline --graph --decorate";
-      grb = "git rebase";
-      grbi = "git rebase -i";
-      grba = "git rebase --abort";
-      grbc = "git rebase --continue";
-
-      # git - workflow helpers
-      gundo = "git reset --soft HEAD~1";
-      gdm = "git diff main...";
       gsh = "git show";
-      gst = "git stash";
-      gstp = "git stash pop";
-      gfix = "git commit --fixup";
-      gclean = "git branch --merged main | grep -v 'main' | xargs git branch -d";
+
+      gp = "git push";
+      gl = "git pull --rebase";
+      gr = "git restore";
+      grr = "git restore --staged";
+
     };
 
     setOptions = [

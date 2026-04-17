@@ -20,6 +20,7 @@
       MsBuild = {
         LoadProjectsOnDemand = true;
       };
+      RazorPluginPath = "";
     };
     onAttach.function =
       #lua
