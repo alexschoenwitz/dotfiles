@@ -4,6 +4,6 @@
     pkgs.go
     pkgs.gofumpt
     pkgs.gopls
-    pkgs.gotools
+    (pkgs.lib.lowPrio pkgs.gotools)
   ];
 }
