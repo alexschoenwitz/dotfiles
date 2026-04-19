@@ -23,6 +23,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mac-app-util.url = "github:hraban/mac-app-util";
+
     nix-colors.url = "github:Misterio77/nix-colors";
 
     nix-index-database = {
@@ -36,6 +38,7 @@
       darwin,
       fenix,
       home-manager,
+      mac-app-util,
       nix-colors,
       nix-index-database,
       nixpkgs,
@@ -70,6 +73,7 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.sharedModules = [
+          mac-app-util.homeManagerModules.default
           nixvim.homeModules.nixvim
           nix-index-database.homeModules.default
         ];
