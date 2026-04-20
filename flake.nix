@@ -93,6 +93,7 @@
           modules = [
             ./machines/home
             { nixpkgs.overlays = commonOverlays; }
+            mac-app-util.darwinModules.default
             home-manager.darwinModules.home-manager
             (homeManagerConfig user)
           ];
@@ -105,6 +106,7 @@
           modules = [
             ./machines/work
             { nixpkgs.overlays = commonOverlays; }
+            mac-app-util.darwinModules.default
             home-manager.darwinModules.home-manager
             (homeManagerConfig user)
           ];

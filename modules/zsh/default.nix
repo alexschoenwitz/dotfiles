@@ -3,6 +3,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    completionInit = "autoload -Uz compinit && compinit -C";
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     plugins = [

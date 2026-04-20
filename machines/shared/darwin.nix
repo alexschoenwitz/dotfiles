@@ -1,5 +1,14 @@
 { pkgs, user, ... }:
 {
+  # Copy Nix apps to a stable path so macOS TCC permissions (Screen Recording,
+  # etc.) persist across rebuilds. Symlinks and trampolines don't work because
+  # macOS ties permissions to the underlying /nix/store path which changes.
+  system.activationScripts.postActivation.text = ''
+    app_source="/Users/${user.username}/Applications/Home Manager Apps"
+    app_target="/Users/${user.username}/Applications/Nix Apps"
+    sudo -u ${user.username} mkdir -p "$app_target"
+    sudo -u ${user.username} ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$app_source/" "$app_target"
+  '';
   nixpkgs.config.allowUnfree = true;
   nix.package = pkgs.nix;
   nix.settings = {
@@ -41,6 +50,7 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
+  programs.zsh.enableGlobalCompInit = false;
   programs.fish.enable = true;
   users.users.${user.username} = {
     name = user.username;
@@ -70,8 +80,8 @@
         mineffect = "scale";
         mru-spaces = false;
         persistent-apps = [
-          "/Applications/Brave Browser.app"
-          "/Applications/Ghostty.app"
+          "/Users/${user.username}/Applications/Nix Apps/Brave Browser.app"
+          "/Users/${user.username}/Applications/Nix Apps/Ghostty.app"
         ];
       };
       NSGlobalDomain = {
