@@ -15,4 +15,8 @@ in
     protoc-gen-dart
     (lib.hiPrio dart-flutter)
   ];
+
+  # Flutter uses CHROME_EXECUTABLE to find a browser for `flutter run -d chrome`.
+  # Point it at Brave (already installed via pkgs.nix) instead of Google Chrome.
+  home.sessionVariables.CHROME_EXECUTABLE = "${pkgs.brave}/bin/brave";
 }
