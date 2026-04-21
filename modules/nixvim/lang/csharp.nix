@@ -25,6 +25,10 @@
     onAttach.function =
       #lua
       ''
+        -- Disable semantic tokens for OmniSharp (known upstream bug: omnisharp-roslyn#2580)
+        -- Crashes on multiline strings/comments, causes freezes
+        client.server_capabilities.semanticTokensProvider = nil
+
         -- Custom command to populate quickfix with dotnet build errors
         vim.api.nvim_create_user_command("PopulateQuickfixDotnet", function()
           local project_dir = os.getenv("DOTNET_PROJECT_DIR") or "."

@@ -124,12 +124,12 @@
   gitsigns = {
     enable = true;
     settings = {
-      current_line_blame = true;
+      current_line_blame = false;
     };
   };
   lsp = {
     enable = true;
-    inlayHints = true;
+    inlayHints = false;
     capabilities = ''
       capabilities.textDocument.semanticTokens = nil
     '';
@@ -137,9 +137,8 @@
   conform-nvim = {
     enable = true;
     settings = {
-      format_on_save = {
+      format_after_save = {
         lsp_format = "fallback";
-        timeout_ms = 2000;
       };
     };
   };
