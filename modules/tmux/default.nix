@@ -11,7 +11,6 @@ in
     extraConfig = ''
       setenv -g COLORTERM "truecolor"
 
-      set -g focus-events on
       set -g set-clipboard on
 
       # Status bar
