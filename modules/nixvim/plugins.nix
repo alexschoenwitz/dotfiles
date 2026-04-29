@@ -111,6 +111,13 @@
           grep = {
             cmd = "rg";
           };
+          explorer = {
+            exclude = [
+              "target"
+              "node_modules"
+              ".git"
+            ];
+          };
         };
       };
       toggle = {
