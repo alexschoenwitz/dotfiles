@@ -5,10 +5,38 @@
   ...
 }:
 let
-  p = config.theme.palette;
+  dark = config.theme.dark.palette;
+  light = config.theme.light.palette;
+
+  mkTheme = p: ''
+    background = #${p.base00}
+    foreground = #${p.base05}
+    cursor-color = #${p.base05}
+    selection-background = #${p.base02}
+    selection-foreground = #${p.base05}
+    palette = 0=#${p.base00}
+    palette = 1=#${p.base08}
+    palette = 2=#${p.base0B}
+    palette = 3=#${p.base0A}
+    palette = 4=#${p.base0D}
+    palette = 5=#${p.base0E}
+    palette = 6=#${p.base0C}
+    palette = 7=#${p.base05}
+    palette = 8=#${p.base03}
+    palette = 9=#${p.base08}
+    palette = 10=#${p.base0B}
+    palette = 11=#${p.base0A}
+    palette = 12=#${p.base0D}
+    palette = 13=#${p.base0E}
+    palette = 14=#${p.base0C}
+    palette = 15=#${p.base07}
+  '';
 in
 {
   config = lib.mkIf pkgs.stdenv.isDarwin {
+    xdg.configFile."ghostty/themes/gruvbox-dark".text = mkTheme dark;
+    xdg.configFile."ghostty/themes/gruvbox-light".text = mkTheme light;
+
     xdg.configFile."ghostty/config".text = ''
       clipboard-paste-protection = false
       clipboard-read = allow
@@ -24,27 +52,7 @@ in
       macos-titlebar-style = hidden
       macos-option-as-alt = true
       keybind = shift+enter=text:\n
-      background = #${p.base00}
-      foreground = #${p.base05}
-      cursor-color = #${p.base05}
-      selection-background = #${p.base02}
-      selection-foreground = #${p.base05}
-      palette = 0=#${p.base00}
-      palette = 1=#${p.base08}
-      palette = 2=#${p.base0B}
-      palette = 3=#${p.base0A}
-      palette = 4=#${p.base0D}
-      palette = 5=#${p.base0E}
-      palette = 6=#${p.base0C}
-      palette = 7=#${p.base05}
-      palette = 8=#${p.base03}
-      palette = 9=#${p.base08}
-      palette = 10=#${p.base0B}
-      palette = 11=#${p.base0A}
-      palette = 12=#${p.base0D}
-      palette = 13=#${p.base0E}
-      palette = 14=#${p.base0C}
-      palette = 15=#${p.base07}
+      theme = light:gruvbox-light,dark:gruvbox-dark
     '';
   };
 }

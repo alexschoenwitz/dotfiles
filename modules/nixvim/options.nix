@@ -8,7 +8,7 @@
         link = "StatusLineNC";
       };
       Comment = {
-        fg = config.theme.paletteHash.base04;
+        fg = config.theme.dark.paletteHash.base04;
         italic = true;
       };
     };

@@ -95,7 +95,7 @@
         NSAutomaticPeriodSubstitutionEnabled = false;
         NSAutomaticQuoteSubstitutionEnabled = false;
         NSAutomaticSpellingCorrectionEnabled = false;
-        AppleInterfaceStyle = "Dark";
+
         NSDocumentSaveNewDocumentsToCloud = false;
         _HIHideMenuBar = false;
         "com.apple.springing.delay" = 0.0;

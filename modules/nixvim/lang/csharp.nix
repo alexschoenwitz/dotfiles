@@ -6,7 +6,6 @@
       cmd = [
         "omnisharp"
         "-z"
-        "DotNet:enablePackageRestore=false"
         "--encoding"
         "utf-8"
         "--languageserver"

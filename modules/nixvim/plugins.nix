@@ -83,6 +83,9 @@
   snacks = {
     enable = true;
     settings = {
+      notifier = {
+        enabled = true;
+      };
       explorer = {
         enabled = true;
         cwd = "vim.uv.cwd()";

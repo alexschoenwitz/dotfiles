@@ -14,6 +14,17 @@ let
     (import ./lang/typescript.nix)
   ];
   mergedPlugins = lib.foldl recursiveMerge { } pluginSets;
+
+  auto-dark-mode-nvim = pkgs.vimUtils.buildVimPlugin {
+    pname = "auto-dark-mode-nvim";
+    version = "2025-04-15";
+    src = pkgs.fetchFromGitHub {
+      owner = "f-person";
+      repo = "auto-dark-mode.nvim";
+      rev = "54058b4fe414bd64bd2904a6f8a63f1f14e3d8df";
+      hash = "sha256-xTgRyct3L6Gcz/vdYSc+h2IUgi/+Lh1Q4mxJwHISeis=";
+    };
+  };
 in
 {
   imports = [ ./options.nix ];
@@ -23,11 +34,21 @@ in
     extraPlugins = with pkgs.vimPlugins; [
       omnisharp-extended-lsp-nvim
       base16-nvim
+      auto-dark-mode-nvim
     ];
     keymaps = import ./keymaps.nix;
 
     extraConfigLua = ''
-      require('base16-colorscheme').setup('gruvbox-dark-medium')
+      require('auto-dark-mode').setup({
+        set_dark_mode = function()
+          vim.o.background = 'dark'
+          require('base16-colorscheme').setup('gruvbox-dark-medium')
+        end,
+        set_light_mode = function()
+          vim.o.background = 'light'
+          require('base16-colorscheme').setup('gruvbox-light-medium')
+        end,
+      })
 
       -- Fix navigation in snacks explorer (floating window confuses smart-splits)
       vim.api.nvim_create_autocmd("FileType", {

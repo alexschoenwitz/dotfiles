@@ -4,7 +4,7 @@
   ...
 }:
 let
-  p = config.theme.paletteHash;
+  p = config.theme.dark.paletteHash;
   skin = {
     k9s = {
       body = {

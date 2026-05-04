@@ -1,8 +1,20 @@
 { pkgs, config, ... }:
 let
-  p = config.theme.palette;
+  dark = config.theme.dark.palette;
+  light = config.theme.light.palette;
+
+  mkTmuxTheme = p: ''
+    set -g status-style bg=default,fg=#${p.base05}
+    set -g status-left '#[fg=#${p.base0D},bold]#{session_name} #[fg=#${p.base05}]│ '
+    set -g status-right '#[fg=#${p.base05}]%Y-%m-%d #[fg=#${p.base0D},bold]%H:%M'
+    set -g window-status-format '#[fg=#${p.base03}] #I:#W '
+    set -g window-status-current-format '#[fg=#${p.base0C},bold] #I:#W#{?window_zoomed_flag,Z,} '
+  '';
 in
 {
+  xdg.configFile."tmux/theme-dark.conf".text = mkTmuxTheme dark;
+  xdg.configFile."tmux/theme-light.conf".text = mkTmuxTheme light;
+
   programs.tmux = {
     enable = true;
     shell = "${pkgs.zsh}/bin/zsh";
@@ -18,14 +30,14 @@ in
       set -g status-justify left
       set -g status-left-length 50
       set -g status-right-length 100
-      set -g status-style bg=default,fg=#${p.base05}
-
-      set -g status-left '#[fg=#${p.base0D},bold]#{session_name} #[fg=#${p.base05}]│ '
-      set -g status-right '#[fg=#${p.base05}]%Y-%m-%d #[fg=#${p.base0D},bold]%H:%M'
-
-      set -g window-status-format '#[fg=#${p.base03}] #I:#W '
-      set -g window-status-current-format '#[fg=#${p.base0C},bold] #I:#W#{?window_zoomed_flag,Z,} '
       set -g window-status-separator '''
+
+      # Theme: detect on startup, live-switch via Mode 2031 hooks
+      if-shell '[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" = "Dark" ]' \
+        'source-file ~/.config/tmux/theme-dark.conf' \
+        'source-file ~/.config/tmux/theme-light.conf'
+      set-hook -g client-dark-theme  'source-file ~/.config/tmux/theme-dark.conf'
+      set-hook -g client-light-theme 'source-file ~/.config/tmux/theme-light.conf'
 
       set -gu default-command
       set -s escape-time 0
