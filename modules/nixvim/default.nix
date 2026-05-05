@@ -42,11 +42,11 @@ in
       require('auto-dark-mode').setup({
         set_dark_mode = function()
           vim.o.background = 'dark'
-          require('base16-colorscheme').setup('gruvbox-dark-medium')
+          vim.cmd.colorscheme('base16-gruvbox-dark-medium')
         end,
         set_light_mode = function()
           vim.o.background = 'light'
-          require('base16-colorscheme').setup('gruvbox-light-medium')
+          vim.cmd.colorscheme('base16-gruvbox-light-medium')
         end,
       })
 
