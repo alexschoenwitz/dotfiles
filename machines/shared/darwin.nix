@@ -8,6 +8,12 @@
     app_target="/Users/${user.username}/Applications/Nix Apps"
     sudo -u ${user.username} mkdir -p "$app_target"
     sudo -u ${user.username} ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$app_source/" "$app_target"
+
+    # Re-sign copied apps so macOS TCC (Screen Recording, etc.) accepts them.
+    # Nix strips the original code signatures, leaving broken ad-hoc stubs that
+    # macOS rejects for privileged permissions.
+    find "$app_target" -name "*.app" -maxdepth 1 -exec \
+      codesign --force --deep --sign - {} \;
   '';
   nixpkgs.config.allowUnfree = true;
   nix.package = pkgs.nix;
