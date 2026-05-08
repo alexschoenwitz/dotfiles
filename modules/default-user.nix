@@ -17,6 +17,7 @@
     ./protobuf
     ./lang.nix
     ./tmux
+    ./vscode
     ./zsh
     ./ssh.nix
     ./default-user-darwin.nix
