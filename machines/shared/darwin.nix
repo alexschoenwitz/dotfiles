@@ -64,11 +64,6 @@
     shell = pkgs.zsh;
   };
 
-  # homebrew = {
-  #   enable = true;
-  #   casks = [ "1password" ];
-  # };
-
   system = {
     primaryUser = user.username;
     defaults = {
