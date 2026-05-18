@@ -115,7 +115,11 @@
 
       homeConfigurations = {
         server = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgsFor."aarch64-linux";
+          pkgs = import nixpkgs {
+            system = "aarch64-linux";
+            overlays = commonOverlays;
+            config.allowUnfree = true;
+          };
           extraSpecialArgs = {
             user = {
               username = "alex";

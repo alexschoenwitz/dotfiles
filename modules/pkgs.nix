@@ -20,12 +20,15 @@ let
     fd
     gh
     gnupg
+    hcloud
+    hugo
     jq
     just
     jwt-cli
     lcov
     mosquitto
     openfga-cli
+    packer
     postgresql
     ranger
     ripgrep
