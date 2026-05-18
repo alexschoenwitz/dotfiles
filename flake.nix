@@ -113,6 +113,24 @@
         };
       };
 
+      homeConfigurations = {
+        server = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgsFor."aarch64-linux";
+          extraSpecialArgs = {
+            user = {
+              username = "alex";
+              fullName = "Alexandre Schönwitz";
+            };
+            inherit nix-colors;
+          };
+          modules = [
+            nixvim.homeModules.nixvim
+            nix-index-database.homeModules.default
+            ./machines/server
+          ];
+        };
+      };
+
       formatter = forAllSystems (system: nixpkgsFor.${system}.nixfmt);
 
       checks = forAllSystems (
