@@ -117,7 +117,6 @@
         server = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             system = "aarch64-linux";
-            overlays = commonOverlays;
             config.allowUnfree = true;
           };
           extraSpecialArgs = {
@@ -128,7 +127,6 @@
             inherit nix-colors;
           };
           modules = [
-            nixvim.homeModules.nixvim
             nix-index-database.homeModules.default
             ./machines/server
           ];

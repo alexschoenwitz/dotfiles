@@ -1,4 +1,4 @@
-{ user, lib, ... }:
+{ user, lib, pkgs, ... }:
 {
   imports = [
     ../../modules/home.nix
@@ -8,13 +8,12 @@
     ../../modules/direnv.nix
     ../../modules/git
     ../../modules/kubernetes
-    ../../modules/nixvim
     ../../modules/pkgs.nix
-    ../../modules/protobuf
-    ../../modules/lang.nix
     ../../modules/tmux
     ../../modules/zsh
   ];
+
+  programs.neovim.enable = true;
 
   programs.git.settings.user.email = "alexandre.schoenwitz@gmail.com";
   programs.git.signing.signByDefault = lib.mkForce false;
