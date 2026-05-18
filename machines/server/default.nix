@@ -1,4 +1,4 @@
-{ user, ... }:
+{ user, lib, ... }:
 {
   imports = [
     ../../modules/home.nix
@@ -17,5 +17,5 @@
   ];
 
   programs.git.settings.user.email = "alexandre.schoenwitz@gmail.com";
-  programs.git.signing.signByDefault = false;
+  programs.git.signing.signByDefault = lib.mkForce false;
 }
